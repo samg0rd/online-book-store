@@ -9,53 +9,57 @@ import Modal from '../../components/UI/Modal/Modal';
 
 class Home extends Component {
 
-    componentDidMount(){
-        this.props.fetchHomeBooksData();        
+  componentDidMount(){
+    this.props.fetchHomeBooksData();        
+  }
+
+
+  componentDidUpdate(){
+    console.log('HOME COMPONENT CDU this.props.selectedBook --> ',this.props.selectedBook)
+  }    
+
+  bookCardClicked = (index) => {
+    console.log('index clickeeeeed!', index);
+    this.props.selectBook(index);
+  }
+
+  closeModalHandler = () => {
+    this.props.deselectBook();
+  }
+
+  render() {    
+      
+    let modal = null;
+    if(this.props.selectedBook !== null){            
+      modal = (
+        <Modal closeModal={this.closeModalHandler}>
+          <p><strong>Title</strong> : {this.props.books[this.props.selectedBook].title}</p>
+          <p><strong>Author</strong> : {this.props.books[this.props.selectedBook].author}</p>
+          <p><strong>Country</strong> : {this.props.books[this.props.selectedBook].country}</p>
+          <p><strong>Language</strong> : {this.props.books[this.props.selectedBook].language}</p>
+          <p><strong>Year</strong> : {this.props.books[this.props.selectedBook].year}</p>        
+        </Modal>
+      )
     }
-
-
-    componentDidUpdate(){
-        console.log('HOME COMPONENT CDU this.props.selectedBook --> ',this.props.selectedBook)
-    }    
-
-    bookCardClicked = (index) => {
-        console.log('index clickeeeeed!', index);
-        this.props.selectBook(index);
-    }
-
-    closeModalHandler = () => {
-        this.props.deselectBook();
-    }
-
-    render() {    
-        
-        let modal = null;
-        if(this.props.selectedBook !== null){            
-            modal = <Modal 
-                        closeModal={this.closeModalHandler} 
-                        name={this.props.books[this.props.selectedBook].title}
-                        author={this.props.books[this.props.selectedBook].author}
-                    />
-        }
-        return (
-            <div className={classes.Home}>
-                {modal}
-                <h1>Welcome to online book store</h1>
-                <h2>newest titles</h2>                   
-                <div className={classes.Home__something}>
-                    {
-                        this.props.books ? this.props.books.map((el, i) => <BookCard 
-                            selected={() => this.bookCardClicked(i)}
-                            key={el.title} 
-                            name={el.title}
-                            author={el.author}
-                            />
-                            ) : null
-                    }
-                </div>
+    return (
+        <div className={classes.Home}>
+            {modal}
+            <h1>Welcome to online book store</h1>
+            <h2>newest titles</h2>                   
+            <div className={classes.Home__something}>
+                {
+                    this.props.books ? this.props.books.map((el, i) => <BookCard 
+                        selected={() => this.bookCardClicked(i)}
+                        key={el.title} 
+                        name={el.title}
+                        author={el.author}
+                        />
+                        ) : null
+                }
             </div>
-        );
-    }
+        </div>
+    );
+  }
 }
 
 const mapStateToProps = state => {

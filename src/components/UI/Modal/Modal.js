@@ -1,16 +1,18 @@
 import React from 'react';
 import classes from './Modal.module.scss';
 
+import Backdrop from './Backdrop';
+
 const Modal = props => {
-    return (
-        <div className={classes.backDrop}>
-            <div className={classes.Modal}>
-                <p><strong>Title</strong> : {props.name}</p>
-                <p><strong>Author</strong> : {props.author}</p>
-                <button onClick={props.closeModal}>close</button>
-            </div>
-        </div>
-    );
+  return (
+    <>
+      <Backdrop hide={props.closeModal}/>
+      <div className={classes.Modal}>        
+        {props.children}
+        <button className={classes.closeBtn} onClick={props.closeModal}>close</button>
+      </div>     
+    </>
+  );
 };
 
 export default Modal;
