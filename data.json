@@ -1,0 +1,270 @@
+{
+    "books" : [
+        {
+            "author": "Dante Alighieri",
+            "country": "Italy",		
+            "language": "Italian",		
+            "title": "The Divine Comedy",
+            "year": 1315
+        },
+        {
+            "author": "Samuel Beckett",
+            "country": "Republic of Ireland",		
+            "language": "French, English",		
+            "title": "Molloy, Malone Dies, The Unnamable, the trilogy",
+            "year": 1952
+        },
+        {
+            "author": "Albert Camus",
+            "country": "Algeria, French Empire",		
+            "language": "French",		
+            "title": "The Stranger",
+            "year": 1942
+        },
+        {
+            "author": "Anton Chekhov",
+            "country": "Russia",		
+            "language": "Russian",				
+            "title": "Stories",
+            "year": 1886
+        },
+        {
+            "author": "Joseph Conrad",
+            "country": "United Kingdom",		
+            "language": "English",		
+            "title": "Nostromo",
+            "year": 1904
+        },
+        {
+            "author": "Charles Dickens",
+            "country": "United Kingdom",		
+            "language": "English",		
+            "title": "Great Expectations",
+            "year": 1861
+        },
+        {
+            "author": "Fyodor Dostoevsky",
+            "country": "Russia",		
+            "language": "Russian",		
+            "title": "Crime and Punishment",
+            "year": 1866
+        },
+        {
+            "author": "Fyodor Dostoevsky",
+            "country": "Russia",		
+            "language": "Russian",		
+            "title": "The Idiot",
+            "year": 1869
+        },
+        {
+            "author": "Fyodor Dostoevsky",
+            "country": "Russia",		
+            "language": "Russian",		
+            "title": "The Possessed",
+            "year": 1872
+        },
+        {
+            "author": "Fyodor Dostoevsky",
+            "country": "Russia",		
+            "language": "Russian",		
+            "title": "The Brothers Karamazov",
+            "year": 1880
+        },
+        {
+            "author": "William Faulkner",
+            "country": "United States",		
+            "language": "English",		
+            "title": "The Sound and the Fury",
+            "year": 1929
+        },
+        {
+            "author": "Gustave Flaubert",
+            "country": "France",		
+            "language": "French",		
+            "title": "Madame Bovary",
+            "year": 1857
+        },
+        {
+            "author": "Gustave Flaubert",
+            "country": "France",		
+            "language": "French",		
+            "title": "Sentimental Education",
+            "year": 1869
+        },
+        {
+            "author": "Gabriel Garc\u00eda M\u00e1rquez",
+            "country": "Colombia",		
+            "language": "Spanish",		
+            "title": "One Hundred Years of Solitude",
+            "year": 1967
+        },
+        {
+            "author": "Johann Wolfgang von Goethe",
+            "country": "Saxe-Weimar",		
+            "language": "German",		
+            "title": "Faust",
+            "year": 1832
+        },
+        {
+            "author": "Nikolai Gogol",
+            "country": "Russia",		
+            "language": "Russian",		
+            "title": "Dead Souls",
+            "year": 1842
+        },
+        {
+            "author": "G\u00fcnter Grass",
+            "country": "Germany",		
+            "language": "German",		
+            "title": "The Tin Drum",
+            "year": 1959
+        },
+        {
+            "author": "Ernest Hemingway",
+            "country": "United States",		
+            "language": "English",		
+            "title": "The Old Man and the Sea",
+            "year": 1952
+        },
+        {
+            "author": "Homer",
+            "country": "Greece",		
+            "language": "Greek",		
+            "title": "Iliad",
+            "year": -735
+        },
+        {
+            "author": "Homer",
+            "country": "Greece",		
+            "language": "Greek",		
+            "title": "Odyssey",
+            "year": -800
+        },
+        {
+            "author": "Henrik Ibsen",
+            "country": "Norway",		
+            "language": "Norwegian",		
+            "title": "A Doll's House",
+            "year": 1879
+        },
+        {
+            "author": "Franz Kafka",
+            "country": "Czechoslovakia",		
+            "language": "German",		
+            "title": "The Trial",
+            "year": 1925
+        },
+        {
+            "author": "Nikos Kazantzakis",
+            "country": "Greece",		
+            "language": "Greek",		
+            "title": "Zorba the Greek",
+            "year": 1946
+        },
+        {
+            "author": "D. H. Lawrence",
+            "country": "United Kingdom",		
+            "language": "English",		
+            "title": "Sons and Lovers",
+            "year": 1913
+        },
+        {
+            "author": "Thomas Mann",
+            "country": "Germany",		
+            "language": "German",		
+            "title": "The Magic Mountain",
+            "year": 1924
+        },
+        {
+            "author": "Herman Melville",
+            "country": "United States",		
+            "language": "English",		
+            "title": "Moby Dick",
+            "year": 1851
+        },
+        {
+            "author": "Vladimir Nabokov",
+            "country": "Russia/United States",		
+            "language": "English",		
+            "title": "Lolita",
+            "year": 1955
+        },
+        {
+            "author": "George Orwell",
+            "country": "United Kingdom",		
+            "language": "English",		
+            "title": "Nineteen Eighty-Four",
+            "year": 1949
+        },
+        {
+            "author": "Edgar Allan Poe",
+            "country": "United States",		
+            "language": "English",		
+            "title": "Tales",
+            "year": 1950
+        },
+        {
+            "author": "Marcel Proust",
+            "country": "France",		
+            "language": "French",		
+            "title": "In Search of Lost Time",
+            "year": 1920
+        },
+        {
+            "author": "Rumi",
+            "country": "Sultanate of Rum",		
+            "language": "Persian",		
+            "title": "The Masnavi",
+            "year": 1236
+        },
+        {
+            "author": "Saadi",
+            "country": "Persia, Persian Empire",		
+            "language": "Persian",		
+            "title": "Bostan",
+            "year": 1257
+        },
+        {
+            "author": "Jos\u00e9 Saramago",
+            "country": "Portugal",		
+            "language": "Portuguese",		
+            "title": "Blindness",
+            "year": 1995
+        },
+        {
+            "author": "William Shakespeare",
+            "country": "England",		
+            "language": "English",		
+            "title": "Hamlet",
+            "year": 1603
+        },
+        {
+            "author": "William Shakespeare",
+            "country": "England",		
+            "language": "English",		
+            "title": "Othello",
+            "year": 1609
+        },
+        {
+            "author": "Leo Tolstoy",
+            "country": "Russia",		
+            "language": "Russian",		
+            "title": "War and Peace",
+            "year": 1867
+        },
+        {
+            "author": "Leo Tolstoy",
+            "country": "Russia",		
+            "language": "Russian",		
+            "title": "Anna Karenina",
+            "year": 1877
+        },
+        {
+            "author": "Mark Twain",
+            "country": "United States",		
+            "language": "English",		
+            "title": "The Adventures of Huckleberry Finn",
+            "year": 1884
+        }
+    ]
+}

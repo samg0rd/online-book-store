@@ -1,0 +1,9 @@
+.Home{
+    position: relative;
+    text-align: center;
+    &__something{        
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
