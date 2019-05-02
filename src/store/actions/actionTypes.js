@@ -19,3 +19,6 @@ export const SET_HOME_DATA = "SET_HOME_DATA";
 export const FETCH_HOME_DATA_FAILED = "FETCH_HOME_DATA_FAILED";
 export const SELECT_BOOK = "SELECT_BOOK";
 export const DESELECT_BOOK = "DESELECT_BOOK";
+
+// DOM ACTION TYPES
+export const ADD_TO_CART = "ADD_TO_CART";

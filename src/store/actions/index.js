@@ -20,3 +20,7 @@ export {
     selectBook,
     deselectBook
 } from './home';
+
+export {    
+    addToCart
+} from './dom';

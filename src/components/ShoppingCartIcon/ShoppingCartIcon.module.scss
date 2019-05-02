@@ -1,0 +1,30 @@
+.cart{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-60%);
+    transition: all .2s;
+    width: 40px;
+    cursor: pointer;    
+    img{
+      width: 100%;
+      height: auto;
+    }
+    &:hover{
+      transform: scale(1.05) translateY(-60%);
+    }
+    &__number {
+        background: white;
+        border-radius: 100%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: orangered;        
+        position: absolute;
+        right: 70%;
+        top: 50%;
+        transform: translateY(-70%);
+    }
+}

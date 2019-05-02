@@ -23,14 +23,15 @@
   transform: translate(-50%,-50%);
   height: 500px;
   border-radius: 5px;
-  .closeBtn{
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20%;
-    padding: 10px;
-    border: 1px solid red;    
-    cursor: pointer;
-  }
+}
+
+.closeBtn{
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20%;
+  padding: 10px;
+  border: 1px solid red;    
+  cursor: pointer;
 }

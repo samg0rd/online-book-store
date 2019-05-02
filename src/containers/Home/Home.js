@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import BookCard from '../../components/BookCard/BookCard';
 import Modal from '../../components/UI/Modal/Modal';
+import Button from '../../components/UI/Button/Button';
 
 class Home extends Component {
 
@@ -27,6 +28,11 @@ class Home extends Component {
     this.props.deselectBook();
   }
 
+  addToCartHandler = () => {
+    console.log('add it to cart!!');
+    this.props.addToCart();
+  }
+
   render() {    
       
     let modal = null;
@@ -37,7 +43,8 @@ class Home extends Component {
           <p><strong>Author</strong> : {this.props.books[this.props.selectedBook].author}</p>
           <p><strong>Country</strong> : {this.props.books[this.props.selectedBook].country}</p>
           <p><strong>Language</strong> : {this.props.books[this.props.selectedBook].language}</p>
-          <p><strong>Year</strong> : {this.props.books[this.props.selectedBook].year}</p>        
+          <p><strong>Year</strong> : {this.props.books[this.props.selectedBook].year}</p>
+          <Button btnType="Button--Success" clicked={this.addToCartHandler}>add to cart</Button>
         </Modal>
       )
     }
@@ -73,7 +80,8 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchHomeBooksData: () => dispatch(actionCreators.fetchHomeData()),
         selectBook: (i) => dispatch(actionCreators.selectBook(i)),
-        deselectBook: () => dispatch(actionCreators.deselectBook())
+        deselectBook: () => dispatch(actionCreators.deselectBook()),
+        addToCart: () => dispatch(actionCreators.addToCart())
     }
 }   
 
