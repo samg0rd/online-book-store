@@ -1,8 +1,9 @@
 .cart{
-    position: absolute;
+  // border: 2px solid green;
+    position: fixed;
     right: 0;
-    top: 50%;
-    transform: translateY(-60%);
+    top: 2%;
+    transform: translateY(-40%);
     transition: all .2s;
     width: 40px;
     cursor: pointer;    
@@ -11,10 +12,10 @@
       height: auto;
     }
     &:hover{
-      transform: scale(1.05) translateY(-60%);
+      // transform: scale(1.05) translateY(-60%);
     }
     &__number {
-        background: white;
+        background: silver;
         border-radius: 100%;
         width: 20px;
         height: 20px;
