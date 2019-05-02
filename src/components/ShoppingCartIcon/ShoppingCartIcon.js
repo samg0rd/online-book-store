@@ -6,9 +6,14 @@ import classes from './ShoppingCartIcon.module.scss';
 import cartIcon from '../../assets/iconfinder_Basket_877012.png';
 
 class ShoppingCart extends Component {
+
+    constructor(props){
+        super(props)
+    }
+
     render() {
         return (            
-            <li className={classes.cart}>
+            <li className={classes.cart} onClick={this.props.clicked}>
                 <img src={cartIcon}/>
                 <p className={classes.cart__number}><strong>{this.props.cartNumber}</strong></p>
             </li>

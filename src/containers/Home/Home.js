@@ -14,7 +14,6 @@ class Home extends Component {
     this.props.fetchHomeBooksData();        
   }
 
-
   componentDidUpdate(){
     console.log('HOME COMPONENT CDU this.props.selectedBook --> ',this.props.selectedBook)
   }    
@@ -28,9 +27,10 @@ class Home extends Component {
     this.props.deselectBook();
   }
 
-  addToCartHandler = () => {
+  addToCartHandler = (selectedBook) => {
     console.log('add it to cart!!');
-    this.props.addToCart();
+    console.log('selectedBook --> ',selectedBook)
+    this.props.addToCart(selectedBook);
   }
 
   render() {    
@@ -44,7 +44,7 @@ class Home extends Component {
           <p><strong>Country</strong> : {this.props.books[this.props.selectedBook].country}</p>
           <p><strong>Language</strong> : {this.props.books[this.props.selectedBook].language}</p>
           <p><strong>Year</strong> : {this.props.books[this.props.selectedBook].year}</p>
-          <Button btnType="Button--Success" clicked={this.addToCartHandler}>add to cart</Button>
+          <Button btnType="Button--Success" clicked={() => this.addToCartHandler(this.props.books[this.props.selectedBook])}>add to cart</Button>
         </Modal>
       )
     }
@@ -55,13 +55,13 @@ class Home extends Component {
             <h2>newest titles</h2>                   
             <div className={classes.Home__something}>
                 {
-                    this.props.books ? this.props.books.map((el, i) => <BookCard 
-                        selected={() => this.bookCardClicked(i)}
-                        key={el.title} 
-                        name={el.title}
-                        author={el.author}
-                        />
-                        ) : null
+                  this.props.books ? this.props.books.map((el, i) => <BookCard 
+                      selected={() => this.bookCardClicked(i)}
+                      key={el.title} 
+                      name={el.title}
+                      author={el.author}
+                      />
+                      ) : null
                 }
             </div>
         </div>
@@ -81,7 +81,7 @@ const mapDispatchToProps = dispatch => {
         fetchHomeBooksData: () => dispatch(actionCreators.fetchHomeData()),
         selectBook: (i) => dispatch(actionCreators.selectBook(i)),
         deselectBook: () => dispatch(actionCreators.deselectBook()),
-        addToCart: () => dispatch(actionCreators.addToCart())
+        addToCart: (selectedBook) => dispatch(actionCreators.addToCart(selectedBook))
     }
 }   
 

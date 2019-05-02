@@ -22,5 +22,7 @@ export {
 } from './home';
 
 export {    
-    addToCart
+    addToCart,
+    showCart,
+    hideCart
 } from './dom';

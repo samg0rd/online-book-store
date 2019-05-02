@@ -22,3 +22,5 @@ export const DESELECT_BOOK = "DESELECT_BOOK";
 
 // DOM ACTION TYPES
 export const ADD_TO_CART = "ADD_TO_CART";
+export const SHOW_CART = "SHOW_CART";
+export const HIDE_CART = "HIDE_CART";
