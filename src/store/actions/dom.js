@@ -1,9 +1,10 @@
 import * as actionTypes from './actionTypes';
 
-export const addToCart = selectedItem => {
+export const addToCart = (selectedItem) => {
     return {
         type: actionTypes.ADD_TO_CART,
-        selectedItem: selectedItem
+        selectedItem: selectedItem.item,
+        quantity: selectedItem.number
     }
 }
 

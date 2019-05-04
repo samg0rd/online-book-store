@@ -48,7 +48,8 @@ class Navigation extends Component {
                 <tr>
                   <th>title</th>
                   <th>author</th>
-                  <th>price</th>                
+                  <th>price</th>
+                  <th>quantity</th>           
                 </tr>
                 {
                   this.props.addedCartItems.map((el,i)=>{                  
@@ -57,6 +58,7 @@ class Navigation extends Component {
                         <td><strong>{el.name}</strong></td>
                         <td><strong>{el.author}</strong></td>
                         <td><strong>{el.price}</strong></td>
+                        <td>{el.quantity}</td>
                         <td className={classes.removeBtn} onClick={() => this.removeItemHandler(i)}>remove</td>
                       </tr>
                     )
