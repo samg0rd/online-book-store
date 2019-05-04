@@ -18,3 +18,10 @@ export const hideCart = () => {
         type: actionTypes.HIDE_CART
     }
 }
+
+export const removeFromCart = selectedItemIndex => {
+    return {
+        type: actionTypes.REMOVE_FROM_CART,
+        itemToRemoveIndex: selectedItemIndex
+    }
+}

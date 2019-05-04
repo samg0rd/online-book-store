@@ -5,266 +5,304 @@
             "country": "Italy",		
             "language": "Italian",		
             "title": "The Divine Comedy",
-            "year": 1315
+            "year": 1315,
+            "price": 20
         },
         {
             "author": "Samuel Beckett",
             "country": "Republic of Ireland",		
             "language": "French, English",		
             "title": "Molloy, Malone Dies, The Unnamable, the trilogy",
-            "year": 1952
+            "year": 1952,
+            "price": 25
         },
         {
             "author": "Albert Camus",
             "country": "Algeria, French Empire",		
             "language": "French",		
             "title": "The Stranger",
-            "year": 1942
+            "year": 1942,
+            "price": 29
         },
         {
             "author": "Anton Chekhov",
             "country": "Russia",		
             "language": "Russian",				
             "title": "Stories",
-            "year": 1886
+            "year": 1886,
+            "price": 76
         },
         {
             "author": "Joseph Conrad",
             "country": "United Kingdom",		
             "language": "English",		
             "title": "Nostromo",
-            "year": 1904
+            "year": 1904,
+            "price": 78
         },
         {
             "author": "Charles Dickens",
             "country": "United Kingdom",		
             "language": "English",		
             "title": "Great Expectations",
-            "year": 1861
+            "year": 1861,
+            "price": 12
         },
         {
             "author": "Fyodor Dostoevsky",
             "country": "Russia",		
             "language": "Russian",		
             "title": "Crime and Punishment",
-            "year": 1866
+            "year": 1866,
+            "price": 30
         },
         {
             "author": "Fyodor Dostoevsky",
             "country": "Russia",		
             "language": "Russian",		
             "title": "The Idiot",
-            "year": 1869
+            "year": 1869,
+            "price": 32
         },
         {
             "author": "Fyodor Dostoevsky",
             "country": "Russia",		
             "language": "Russian",		
             "title": "The Possessed",
-            "year": 1872
+            "year": 1872,
+            "price": 37
         },
         {
             "author": "Fyodor Dostoevsky",
             "country": "Russia",		
             "language": "Russian",		
             "title": "The Brothers Karamazov",
-            "year": 1880
+            "year": 1880,
+            "price": 65
         },
         {
             "author": "William Faulkner",
             "country": "United States",		
             "language": "English",		
             "title": "The Sound and the Fury",
-            "year": 1929
+            "year": 1929,
+            "price": 75
         },
         {
             "author": "Gustave Flaubert",
             "country": "France",		
             "language": "French",		
             "title": "Madame Bovary",
-            "year": 1857
+            "year": 1857,
+            "price": 59
         },
         {
             "author": "Gustave Flaubert",
             "country": "France",		
             "language": "French",		
             "title": "Sentimental Education",
-            "year": 1869
+            "year": 1869,
+            "price": 81
         },
         {
             "author": "Gabriel Garc\u00eda M\u00e1rquez",
             "country": "Colombia",		
             "language": "Spanish",		
             "title": "One Hundred Years of Solitude",
-            "year": 1967
+            "year": 1967,
+            "price": 45
         },
         {
             "author": "Johann Wolfgang von Goethe",
             "country": "Saxe-Weimar",		
             "language": "German",		
             "title": "Faust",
-            "year": 1832
+            "year": 1832,
+            "price": 41
         },
         {
             "author": "Nikolai Gogol",
             "country": "Russia",		
             "language": "Russian",		
             "title": "Dead Souls",
-            "year": 1842
+            "year": 1842,
+            "price": 31
         },
         {
             "author": "G\u00fcnter Grass",
             "country": "Germany",		
             "language": "German",		
             "title": "The Tin Drum",
-            "year": 1959
+            "year": 1959,
+            "price": 11
         },
         {
             "author": "Ernest Hemingway",
             "country": "United States",		
             "language": "English",		
             "title": "The Old Man and the Sea",
-            "year": 1952
+            "year": 1952,
+            "price": 10
         },
         {
             "author": "Homer",
             "country": "Greece",		
             "language": "Greek",		
             "title": "Iliad",
-            "year": -735
+            "year": -735,
+            "price": 5
         },
         {
             "author": "Homer",
             "country": "Greece",		
             "language": "Greek",		
             "title": "Odyssey",
-            "year": -800
+            "year": -800,
+            "price": 99
         },
         {
             "author": "Henrik Ibsen",
             "country": "Norway",		
             "language": "Norwegian",		
             "title": "A Doll's House",
-            "year": 1879
+            "year": 1879,
+            "price": 199
         },
         {
             "author": "Franz Kafka",
             "country": "Czechoslovakia",		
             "language": "German",		
             "title": "The Trial",
-            "year": 1925
+            "year": 1925,
+            "price": 121
         },
         {
             "author": "Nikos Kazantzakis",
             "country": "Greece",		
             "language": "Greek",		
             "title": "Zorba the Greek",
-            "year": 1946
+            "year": 1946,
+            "price": 198
         },
         {
             "author": "D. H. Lawrence",
             "country": "United Kingdom",		
             "language": "English",		
             "title": "Sons and Lovers",
-            "year": 1913
+            "year": 1913,
+            "price": 118
         },
         {
             "author": "Thomas Mann",
             "country": "Germany",		
             "language": "German",		
             "title": "The Magic Mountain",
-            "year": 1924
+            "year": 1924,
+            "price": 18
         },
         {
             "author": "Herman Melville",
             "country": "United States",		
             "language": "English",		
             "title": "Moby Dick",
-            "year": 1851
+            "year": 1851,
+            "price": 8
         },
         {
             "author": "Vladimir Nabokov",
             "country": "Russia/United States",		
             "language": "English",		
             "title": "Lolita",
-            "year": 1955
+            "year": 1955,
+            "price": 166
         },
         {
             "author": "George Orwell",
             "country": "United Kingdom",		
             "language": "English",		
             "title": "Nineteen Eighty-Four",
-            "year": 1949
+            "year": 1949,
+            "price": 66
         },
         {
             "author": "Edgar Allan Poe",
             "country": "United States",		
             "language": "English",		
             "title": "Tales",
-            "year": 1950
+            "year": 1950,
+            "price": 116
         },
         {
             "author": "Marcel Proust",
             "country": "France",		
             "language": "French",		
             "title": "In Search of Lost Time",
-            "year": 1920
+            "year": 1920,
+            "price": 115
         },
         {
             "author": "Rumi",
             "country": "Sultanate of Rum",		
             "language": "Persian",		
             "title": "The Masnavi",
-            "year": 1236
+            "year": 1236,
+            "price": 112
         },
         {
             "author": "Saadi",
             "country": "Persia, Persian Empire",		
             "language": "Persian",		
             "title": "Bostan",
-            "year": 1257
+            "year": 1257,
+            "price": 153
         },
         {
             "author": "Jos\u00e9 Saramago",
             "country": "Portugal",		
             "language": "Portuguese",		
             "title": "Blindness",
-            "year": 1995
+            "year": 1995,
+            "price": 156
         },
         {
             "author": "William Shakespeare",
             "country": "England",		
             "language": "English",		
             "title": "Hamlet",
-            "year": 1603
+            "year": 1603,
+            "price": 126
         },
         {
             "author": "William Shakespeare",
             "country": "England",		
             "language": "English",		
             "title": "Othello",
-            "year": 1609
+            "year": 1609,
+            "price": 26
         },
         {
             "author": "Leo Tolstoy",
             "country": "Russia",		
             "language": "Russian",		
             "title": "War and Peace",
-            "year": 1867
+            "year": 1867,
+            "price": 76
         },
         {
             "author": "Leo Tolstoy",
             "country": "Russia",		
             "language": "Russian",		
             "title": "Anna Karenina",
-            "year": 1877
+            "year": 1877,
+            "price": 176
         },
         {
             "author": "Mark Twain",
             "country": "United States",		
             "language": "English",		
             "title": "The Adventures of Huckleberry Finn",
-            "year": 1884
+            "year": 1884,
+            "price": 168
         }
     ]
 }

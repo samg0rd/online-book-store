@@ -39,12 +39,20 @@ class Home extends Component {
     if(this.props.selectedBook !== null){            
       modal = (
         <Modal closeModal={this.closeModalHandler}>
+
           <p><strong>Title</strong> : {this.props.books[this.props.selectedBook].title}</p>
           <p><strong>Author</strong> : {this.props.books[this.props.selectedBook].author}</p>
           <p><strong>Country</strong> : {this.props.books[this.props.selectedBook].country}</p>
           <p><strong>Language</strong> : {this.props.books[this.props.selectedBook].language}</p>
           <p><strong>Year</strong> : {this.props.books[this.props.selectedBook].year}</p>
-          <Button btnType="Button--Success" clicked={() => this.addToCartHandler(this.props.books[this.props.selectedBook])}>add to cart</Button>
+
+          <div className={classes.addToCartFunc}>
+
+            <h3><strong>PRICE</strong> : {this.props.books[this.props.selectedBook].price}</h3>
+            <Button btnType="Button--Success" clicked={() => this.addToCartHandler(this.props.books[this.props.selectedBook])}>add to cart</Button>
+
+          </div>
+
         </Modal>
       )
     }

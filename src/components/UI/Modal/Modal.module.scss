@@ -15,6 +15,7 @@
   position: fixed;
   z-index: 1000;
   width: 70%;
+  overflow: hidden;
   background: white;
   border: 1px solid black;
   box-shadow: 0 0 .3 rgba(0, 0, 0, 0.4);  
@@ -26,12 +27,10 @@
 }
 
 .closeBtn{
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
   width: 20%;
   padding: 10px;
   border: 1px solid red;    
+  display: block;
+  margin: 0 auto;
   cursor: pointer;
 }
