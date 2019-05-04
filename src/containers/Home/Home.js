@@ -8,7 +8,13 @@ import BookCard from '../../components/BookCard/BookCard';
 import Modal from '../../components/UI/Modal/Modal';
 import Button from '../../components/UI/Button/Button';
 
+import Quantity from '../../components/Quantity/Quantity';
+
 class Home extends Component {
+
+  state = {
+    qNum: 1
+  }
 
   componentDidMount(){
     this.props.fetchHomeBooksData();        
@@ -18,33 +24,62 @@ class Home extends Component {
     console.log('HOME COMPONENT CDU this.props.selectedBook --> ',this.props.selectedBook)
   }    
 
-  bookCardClicked = (index) => {
-    console.log('index clickeeeeed!', index);
+  bookCardClicked = (index) => {    
     this.props.selectBook(index);
   }
 
   closeModalHandler = () => {
     this.props.deselectBook();
+    this.setState({
+      qNum: 1
+    })
   }
 
-  addToCartHandler = (selectedBook) => {
-    console.log('add it to cart!!');
-    console.log('selectedBook --> ',selectedBook)
+  addToCartHandler = (selectedBook) => {    
     this.props.addToCart(selectedBook);
+    this.props.deselectBook();
+    this.setState({
+      qNum: 1
+    })
+  }
+
+  addQuantityHandler = () => {    
+    this.setState(prevState => {
+      return {
+        qNum: prevState.qNum+=1
+      }
+    })
+  }
+
+  subQuantityHandler = () => {
+    this.setState(prevState => {
+      return {
+        qNum: prevState.qNum > 1 ? prevState.qNum-=1 : 1
+      }
+    })
   }
 
   render() {    
       
     let modal = null;
-    if(this.props.selectedBook !== null){            
+    if(this.props.selectedBook !== null){        
       modal = (
         <Modal closeModal={this.closeModalHandler}>
+
           <p><strong>Title</strong> : {this.props.books[this.props.selectedBook].title}</p>
           <p><strong>Author</strong> : {this.props.books[this.props.selectedBook].author}</p>
           <p><strong>Country</strong> : {this.props.books[this.props.selectedBook].country}</p>
           <p><strong>Language</strong> : {this.props.books[this.props.selectedBook].language}</p>
           <p><strong>Year</strong> : {this.props.books[this.props.selectedBook].year}</p>
-          <Button btnType="Button--Success" clicked={() => this.addToCartHandler(this.props.books[this.props.selectedBook])}>add to cart</Button>
+
+          <div className={classes.addToCartFunc}>
+
+            <h3><strong>PRICE</strong> : {this.props.books[this.props.selectedBook].price}</h3>
+            <Quantity qNum={this.state.qNum} addQuantity={this.addQuantityHandler} subQuantity={this.subQuantityHandler}/>            
+            <Button btnType="Button--Success" clicked={() => this.addToCartHandler({item: this.props.books[this.props.selectedBook], number: this.state.qNum})}>add to cart</Button>
+
+          </div>
+
         </Modal>
       )
     }

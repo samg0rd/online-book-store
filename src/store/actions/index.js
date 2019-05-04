@@ -24,5 +24,6 @@ export {
 export {    
     addToCart,
     showCart,
-    hideCart
+    hideCart,
+    removeFromCart
 } from './dom';

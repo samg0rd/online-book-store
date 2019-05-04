@@ -1,9 +1,9 @@
 .cart{
-  // border: 2px solid green;
     position: fixed;
-    right: 0;
-    top: 2%;
-    transform: translateY(-40%);
+    right: 2%;
+    top: 25px;
+    z-index: 100;
+    transform: translateY(-60%);
     transition: all .2s;
     width: 40px;
     cursor: pointer;    
