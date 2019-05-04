@@ -25,3 +25,5 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const SHOW_CART = "SHOW_CART";
 export const HIDE_CART = "HIDE_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const SUB_ITEM_NUMBER = "SUB_ITEM_NUMBER";
+export const ADD_ITEM_NUMBER = "ADD_ITEM_NUMBER";

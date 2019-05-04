@@ -62,7 +62,7 @@ class Home extends Component {
   render() {    
       
     let modal = null;
-    if(this.props.selectedBook !== null){            
+    if(this.props.selectedBook !== null){        
       modal = (
         <Modal closeModal={this.closeModalHandler}>
 

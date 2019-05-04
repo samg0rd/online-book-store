@@ -26,3 +26,15 @@ export const removeFromCart = selectedItemIndex => {
         itemToRemoveIndex: selectedItemIndex
     }
 }
+
+export const addItemNumber = () => {
+    return {
+        type: actionTypes.ADD_ITEM_NUMBER
+    }
+}
+
+export const subItemNumber = () => {
+    return {
+        type: actionTypes.SUB_ITEM_NUMBER
+    }
+}

@@ -8,6 +8,8 @@ import * as actionCreators from '../../store/actions/index';
 
 import Modal from '../../components/UI/Modal/Modal';
 
+import Quantity from '../../components/Quantity/Quantity';
+
 class Navigation extends Component {
 
   constructor(props){
@@ -22,9 +24,17 @@ class Navigation extends Component {
     this.props.hideShoppingCart()
   }
 
-  removeItemHandler = i => {
-    console.log('remove this item from my cart and the I is ---> !', i);
+  removeItemHandler = i => {    
     this.props.removeItemFromCart(i);
+  }
+
+  addQuantityHandler = () => {
+    console.log('ADD boogh');    
+  }
+
+  subQuantityHandler = () => {
+    console.log('SUB doogh!');
+    
   }
 
   render(){
@@ -58,7 +68,8 @@ class Navigation extends Component {
                         <td><strong>{el.name}</strong></td>
                         <td><strong>{el.author}</strong></td>
                         <td><strong>{el.price}</strong></td>
-                        <td>{el.quantity}</td>
+                        {/* <td className={classes.tdQuantity}><div>-</div> <strong>{el.quantity}</strong> <div>+</div></td> */}
+                        <td className={classes.tdQuantity}><Quantity qNum={el.quantity} subQuantity={this.subQuantityHandler} addQuantity={this.addQuantityHandler}/></td>
                         <td className={classes.removeBtn} onClick={() => this.removeItemHandler(i)}>remove</td>
                       </tr>
                     )
