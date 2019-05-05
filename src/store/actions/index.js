@@ -25,5 +25,7 @@ export {
     addToCart,
     showCart,
     hideCart,
-    removeFromCart
+    removeFromCart,
+    addItemNumber,
+    subItemNumber
 } from './dom';

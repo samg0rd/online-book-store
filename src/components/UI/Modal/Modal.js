@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Modal.module.scss';
 
 import Backdrop from './Backdrop';
-import Button from '../Button/Button';
+// import Button from '../Button/Button';
 
 const Modal = props => {
   return (

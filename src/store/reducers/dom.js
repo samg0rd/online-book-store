@@ -8,7 +8,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log('inside dom reducer -- action.selectedItem.quantity for item -->', action.quantity);
     
     switch (action.type) {
         case actionTypes.ADD_TO_CART:
@@ -43,6 +42,44 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 showCart: false
             }
+
+        case actionTypes.ADD_ITEM_NUMBER:            
+            let cartItemsCopyAdd = [
+                ...state.cartItems
+            ]
+
+            cartItemsCopyAdd[action.itemIndex].quantity+=1;
+
+            let totalItemsPriceArray = cartItemsCopyAdd.map(el => el.price * el.quantity);
+
+
+            return {
+                ...state,
+                cartItems: cartItemsCopyAdd,
+                subTotalPrice: totalItemsPriceArray.reduce((prev, cur) => prev + cur )
+            }
+
+        case actionTypes.SUB_ITEM_NUMBER:            
+            let cartItemsCopySub = [
+                ...state.cartItems
+            ]            
+
+            if(cartItemsCopySub[action.itemIndex].quantity > 1){
+
+                cartItemsCopySub[action.itemIndex].quantity-=1; 
+
+                let totalItemsPriceArray2 = cartItemsCopySub.map(el => el.price * el.quantity);
+
+                return {
+                    ...state,
+                    cartItems: cartItemsCopySub,                    
+                    subTotalPrice: totalItemsPriceArray2.reduce((prev, cur)=> prev + cur )
+                }
+            }else{
+                return {
+                    ...state                
+                }
+            }             
     
         default:
             return state;

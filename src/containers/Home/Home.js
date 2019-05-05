@@ -10,6 +10,8 @@ import Button from '../../components/UI/Button/Button';
 
 import Quantity from '../../components/Quantity/Quantity';
 
+import Loading from '../../components/UI/Loading/Loading';
+
 class Home extends Component {
 
   state = {
@@ -19,10 +21,6 @@ class Home extends Component {
   componentDidMount(){
     this.props.fetchHomeBooksData();        
   }
-
-  componentDidUpdate(){
-    console.log('HOME COMPONENT CDU this.props.selectedBook --> ',this.props.selectedBook)
-  }    
 
   bookCardClicked = (index) => {    
     this.props.selectBook(index);
@@ -62,7 +60,7 @@ class Home extends Component {
   render() {    
       
     let modal = null;
-    if(this.props.selectedBook !== null){        
+    if(this.props.selectedBook !== null){
       modal = (
         <Modal closeModal={this.closeModalHandler}>
 
@@ -84,10 +82,10 @@ class Home extends Component {
       )
     }
     return (
-        <div className={classes.Home}>
+        <div className={classes.Home}>   
             {modal}
             <h1>Welcome to online book store</h1>
-            <h2>newest titles</h2>                   
+            <h2>newest titles</h2>            
             <div className={classes.Home__something}>
                 {
                   this.props.books ? this.props.books.map((el, i) => <BookCard 
@@ -96,7 +94,7 @@ class Home extends Component {
                       name={el.title}
                       author={el.author}
                       />
-                      ) : null
+                      ) : <Loading />
                 }
             </div>
         </div>
