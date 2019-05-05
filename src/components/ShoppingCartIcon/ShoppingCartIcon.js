@@ -7,14 +7,14 @@ import cartIcon from '../../assets/iconfinder_Basket_877012.png';
 
 class ShoppingCart extends Component {
 
-    constructor(props){
-        super(props)
-    }
+    // constructor(props){
+    //     super(props)
+    // }
 
     render() {
         return (            
             <li className={classes.cart} onClick={this.props.clicked}>
-                <img src={cartIcon}/>
+                <img src={cartIcon} alt="cart icon"/>
                 <p className={classes.cart__number}><strong>{this.props.cartNumber}</strong></p>
             </li>
         );

@@ -12,10 +12,6 @@ import Quantity from '../../components/Quantity/Quantity';
 
 class Navigation extends Component {
 
-  constructor(props){
-    super(props)
-  }
-
   shoppingCartClickedHandler = () => {    
     this.props.showShoppingCart();
   }
@@ -28,13 +24,12 @@ class Navigation extends Component {
     this.props.removeItemFromCart(i);
   }
 
-  addQuantityHandler = () => {
-    console.log('ADD boogh');    
+  addQuantityHandler = (i) => {    
+    this.props.addQuantity(i);
   }
 
-  subQuantityHandler = () => {
-    console.log('SUB doogh!');
-    
+  subQuantityHandler = (i) => {    
+    this.props.subQuantity(i);
   }
 
   render(){
@@ -67,17 +62,21 @@ class Navigation extends Component {
                       <tr key={i}>
                         <td><strong>{el.name}</strong></td>
                         <td><strong>{el.author}</strong></td>
-                        <td><strong>{el.price}</strong></td>
-                        {/* <td className={classes.tdQuantity}><div>-</div> <strong>{el.quantity}</strong> <div>+</div></td> */}
-                        <td className={classes.tdQuantity}><Quantity qNum={el.quantity} subQuantity={this.subQuantityHandler} addQuantity={this.addQuantityHandler}/></td>
+                        <td><strong>{el.price}</strong></td>                        
+                        <td className={classes.tdQuantity}>
+                          <Quantity 
+                            qNum={el.quantity} 
+                            subQuantity={()=>this.subQuantityHandler(i)} 
+                            addQuantity={()=>this.addQuantityHandler(i)}
+                          />
+                        </td>
                         <td className={classes.removeBtn} onClick={() => this.removeItemHandler(i)}>remove</td>
                       </tr>
                     )
                   })
                 }
               </tbody>
-            </table>    
-
+            </table>            
             <h3 style={{textAlign: "center", padding: 20}}>Subtotal : {this.props.subTotalPrice} $</h3>      
         </div>
       )
@@ -122,7 +121,9 @@ const mapDispatchToProps = dispatch => {
   return {
     showShoppingCart: () => dispatch(actionCreators.showCart()),
     hideShoppingCart: () => dispatch(actionCreators.hideCart()),
-    removeItemFromCart: (i) => dispatch(actionCreators.removeFromCart(i))
+    removeItemFromCart: (i) => dispatch(actionCreators.removeFromCart(i)),
+    addQuantity: (i) => dispatch(actionCreators.addItemNumber(i)),
+    subQuantity: (i) => dispatch(actionCreators.subItemNumber(i))
   }
 }
 
