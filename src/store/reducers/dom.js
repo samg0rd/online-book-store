@@ -85,7 +85,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 cartNum: 0,
-                cartItems: [],                
+                cartItems: [],
+                subTotalPrice: 0            
             }
     
         default:

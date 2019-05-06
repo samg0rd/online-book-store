@@ -96,8 +96,10 @@ class Navigation extends Component {
                 }
               </tbody>
             </table>            
-            <h3 style={{textAlign: "center", padding: 20}}>Subtotal : {this.props.subTotalPrice} $</h3>               
-            <Button btnType="Button--Success" clicked={this.orderHandler}>ORDER</Button>
+            <h3 style={{textAlign: "center", padding: 20}}>Subtotal : {this.props.subTotalPrice} $</h3>    
+            <div style={{textAlign: "center"}}>
+              <Button btnType="Button--Success" clicked={this.orderHandler}>ORDER</Button>
+            </div>
         </div>
       )
     }

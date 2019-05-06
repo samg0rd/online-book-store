@@ -6,8 +6,15 @@ import Button from '../../components/UI/Button/Button';
 
 class Receipt extends Component {
 
-    confirmOrderHandler = () => {
-        console.log('confirmOrderHandler');        
+    confirmOrderHandler = () => {        
+        // put the order (whatever it is) as the first argument in the below function (and get it from the state stored in redux)
+        // put the token as the second argument        
+        const order = {
+            items: this.props.itemsToPurchase,
+            totalPrice: this.props.subTotalPrice
+        }
+        console.log('ORDER TO PURCHASE --> ', order);
+        this.props.purchaseOrder(order,this.props.token);
     }
 
     cancelOrderHandler = () => {
@@ -60,12 +67,15 @@ const mapStateToProps = state => {
     return {
         addedCartItems: state.dom.cartItems,
         subTotalPrice: state.dom.subTotalPrice,
+        token: state.auth.token,
+        itemsToPurchase: state.dom.cartItems
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        cancelOrder: () => dispatch(actionCreators.cancelOrderConfirmation())
+        cancelOrder: () => dispatch(actionCreators.cancelOrderConfirmation()),
+        purchaseOrder: (orderData, token) => dispatch(actionCreators.confirmOrderConfirmation(orderData, token))
     }
 }
 
