@@ -9,6 +9,7 @@ import Home from './containers/Home/Home';
 import About from './containers/About/About';
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
+import Receipt from './containers/Receipt/Receipt';
 
 // import required actions from the store 
 import * as actions from './store/actions/index';
@@ -41,8 +42,9 @@ class App extends Component {
       routes = (
         <Switch>                    
           <Route path="/logout" component={Logout} />
-          <Route path="/about" component={About} />          
-          <Route path="/" exact component={Home}/>
+          <Route path="/about" component={About} />
+          <Route path="/receipt" component={Receipt} />          
+          <Route path="/" exact component={Home} />          
         </Switch>
       );
 
