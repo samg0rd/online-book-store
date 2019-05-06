@@ -40,3 +40,15 @@ export const subItemNumber = (selectedItemIndex) => {
         itemIndex: selectedItemIndex
     }
 }
+
+export const cancelOrderConfirmation = () => {
+    return {
+        type: actionTypes.CANCEL_ORDER_CONFIRMATION
+    }
+}
+
+export const confirmOrderConfirmation = () => {
+    return {
+        type: actionTypes.CONFIRM_ORDER_CONFIRMATION
+    }
+}

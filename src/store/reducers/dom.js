@@ -79,7 +79,14 @@ const reducer = (state = initialState, action) => {
                 return {
                     ...state                
                 }
-            }             
+            }
+            
+        case actionTypes.CANCEL_ORDER_CONFIRMATION:
+            return {
+                ...state,
+                cartNum: 0,
+                cartItems: [],                
+            }
     
         default:
             return state;
