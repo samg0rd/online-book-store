@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../store/actions/index';
 import classes from './Receipt.module.scss';
 import Button from '../../components/UI/Button/Button';
 
-class Receipt extends Component {
+class Receipt extends Component {  
 
     confirmOrderHandler = () => {        
         // put the order (whatever it is) as the first argument in the below function (and get it from the state stored in redux)
@@ -14,7 +15,7 @@ class Receipt extends Component {
             totalPrice: this.props.subTotalPrice
         }
         console.log('ORDER TO PURCHASE --> ', order);
-        this.props.purchaseOrder(order,this.props.token);
+        this.props.purchaseOrder(order,this.props.token, this.props.history);
     }
 
     cancelOrderHandler = () => {
@@ -75,8 +76,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         cancelOrder: () => dispatch(actionCreators.cancelOrderConfirmation()),
-        purchaseOrder: (orderData, token) => dispatch(actionCreators.confirmOrderConfirmation(orderData, token))
+        purchaseOrder: (orderData, token, router) => dispatch(actionCreators.confirmOrderConfirmation(orderData, token, router))
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Receipt);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Receipt));

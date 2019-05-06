@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 import axios from '../../axios';
 
 export const setHomeData = books => {
-    console.log('books ---> ',books);
+    // console.log('books ---> ',books);
     return {
         type: actionTypes.SET_HOME_DATA,
         books: books
@@ -32,11 +32,11 @@ export const fetchHomeData = () => {
     return dispatch => {
       axios.get('/books.json')
         .then(response => {    
-            console.log('BOOK DATA FETCHED!! --> ', response);    
+            // console.log('BOOK DATA FETCHED!! --> ', response);    
             dispatch(setHomeData(response.data));
         })
         .catch(error => {
-            console.log('BOOK DATA FAILED!! --> ', error);
+            // console.log('BOOK DATA FAILED!! --> ', error);
             dispatch(fetchHomeDataFailed());
         })
     }
