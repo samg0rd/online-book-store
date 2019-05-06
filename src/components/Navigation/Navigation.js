@@ -6,7 +6,10 @@ import ShoppingCartIcon from '../../components/ShoppingCartIcon/ShoppingCartIcon
 
 import * as actionCreators from '../../store/actions/index';
 
+import {withRouter} from 'react-router-dom';
+
 import Modal from '../../components/UI/Modal/Modal';
+import Button from '../../components/UI/Button/Button';
 
 import Quantity from '../../components/Quantity/Quantity';
 
@@ -32,6 +35,22 @@ class Navigation extends Component {
     this.props.subQuantity(i);
   }
 
+  orderHandler = () => {
+    console.log('order handling function');    
+
+    if (!this.props.isAuthenticated) {     
+      // check if the user is logged in, if not redirect it to the login page
+      this.props.hideShoppingCart();
+      this.props.history.push('/login');
+    }else{
+      // if the user is logged in then send the http request with the data added to the shopping cart
+      console.log('we are about to send a request and confirm your order!')
+      this.props.hideShoppingCart();
+      this.props.history.push('/receipt');      
+    }
+    
+  }
+
   render(){
 
     let modal = null;
@@ -42,11 +61,11 @@ class Navigation extends Component {
       </div>
     )
 
-    if(this.props.addedCartItems.length > 0){
+    if(this.props.addedCartItems.length > 0){      
+
       modalContent = (
         <div className={classes.shoppingCart}>
-          <h2 style={{textAlign: "center"}}>SHOPPING CART</h2>
-
+          <h2 style={{textAlign: "center"}}>SHOPPING CART</h2>            
 
             <table>
               <tbody>
@@ -77,7 +96,10 @@ class Navigation extends Component {
                 }
               </tbody>
             </table>            
-            <h3 style={{textAlign: "center", padding: 20}}>Subtotal : {this.props.subTotalPrice} $</h3>      
+            <h3 style={{textAlign: "center", padding: 20}}>Subtotal : {this.props.subTotalPrice} $</h3>    
+            <div style={{textAlign: "center"}}>
+              <Button btnType="Button--Success" clicked={this.orderHandler}>ORDER</Button>
+            </div>
         </div>
       )
     }
@@ -113,7 +135,9 @@ const mapStateToProps = state => {
   return {    
     showCartModal: state.dom.showCart,
     addedCartItems: state.dom.cartItems,
-    subTotalPrice: state.dom.subTotalPrice
+    subTotalPrice: state.dom.subTotalPrice,
+    isAuthenticated: state.auth.token !== null,
+    authRedirectPath: state.auth.authRedirectPath
   }
 }
 
@@ -123,8 +147,10 @@ const mapDispatchToProps = dispatch => {
     hideShoppingCart: () => dispatch(actionCreators.hideCart()),
     removeItemFromCart: (i) => dispatch(actionCreators.removeFromCart(i)),
     addQuantity: (i) => dispatch(actionCreators.addItemNumber(i)),
-    subQuantity: (i) => dispatch(actionCreators.subItemNumber(i))
+    subQuantity: (i) => dispatch(actionCreators.subItemNumber(i)),
+    // checkIfLoggedIn: () => dispatch(actionCreators.authCheckState()),
+    onSetAuthRedirectPath: (path) => dispatch(actionCreators.setAuthRedirectPath(path))
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Navigation);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Navigation));

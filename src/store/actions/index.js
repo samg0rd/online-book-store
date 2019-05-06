@@ -27,5 +27,7 @@ export {
     hideCart,
     removeFromCart,
     addItemNumber,
-    subItemNumber
+    subItemNumber,
+    cancelOrderConfirmation,
+    confirmOrderConfirmation
 } from './dom';

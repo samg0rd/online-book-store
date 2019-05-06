@@ -1,4 +1,8 @@
 import * as actionTypes from './actionTypes';
+import axios from '../../axios';
+import history from '../../history';
+
+console.log('inside dom js action creator and the history is --> ', history);
 
 export const addToCart = (selectedItem) => {
     return {
@@ -40,3 +44,33 @@ export const subItemNumber = (selectedItemIndex) => {
         itemIndex: selectedItemIndex
     }
 }
+
+export const cancelOrderConfirmation = () => {
+    return {
+        type: actionTypes.CANCEL_ORDER_CONFIRMATION
+    }
+}
+
+// this is the action we dispatch from the container once we clicked that order button
+export const confirmOrderConfirmation = (orderData, token) => {
+    return dispatch => {
+      // we dispatch this action to say its going to be in the loading phase
+    //   dispatch(purchaseBurgerStart());
+    //   axios.post('/orders.json?auth=' + token, orderData, {headers: header})
+      axios.post('/orders.json', orderData)
+        .then(response => {
+            console.log('inside dom actionCreator confirmOrderConfirmation then function and the response is -->  ',response);             
+            // clear the shopping cart
+            dispatch(cancelOrderConfirmation());      
+            
+            // redirect to home page
+            // this.props.history.push('/');
+            history.push('/');
+            //   dispatch(purchaseBurgerSuccess(response.data.name, orderData));
+        })
+        .catch(error => {
+        //   dispatch(purchaseBurgerFail(error));
+            console.log('inside dom.js actionCreator confirmOrderConfirmation CATCH method ERROR --> ', error)
+        });
+    }
+  }
