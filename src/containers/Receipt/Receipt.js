@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as actionCreators from '../../store/actions/index';
 import classes from './Receipt.module.scss';
 import Button from '../../components/UI/Button/Button';
+import Loading from '../../components/UI/Loading/Loading';
 
 class Receipt extends Component {  
 
@@ -25,8 +26,14 @@ class Receipt extends Component {
     }
 
     render() {
+        let errMessage = null;
+        if(this.props.errorOnPurchase){
+            errMessage = <p>{this.props.errorOnPurchase}</p>
+        }
         return (            
             <div>
+
+                {errMessage}
 
                 <h2 style={{textAlign: "center"}}>PRE CONFIRM ORDER RECEIPT</h2>       
     
@@ -54,11 +61,14 @@ class Receipt extends Component {
                         }
                     </tbody>
                 </table>            
-                <h3 style={{textAlign: "center", padding: 20}}>Subtotal : {this.props.subTotalPrice} $</h3>
+                <h3 style={{textAlign: "center", padding: 20}}>Subtotal : {this.props.subTotalPrice} $</h3>                
                 <div className={classes.btnHolder}>
                     <Button btnType="Button--Danger" clicked={this.cancelOrderHandler}>CANCEL THE ORDER</Button>
-                    <Button btnType="Button--Success" clicked={this.confirmOrderHandler}>CONFIRM AND PAY</Button>                
-                </div>
+                    <Button btnType="Button--Success" clicked={this.confirmOrderHandler} disabled={this.props.purchaseStart ? true : false } >CONFIRM AND PAY</Button>                          
+                </div>                
+                {
+                    this.props.purchaseStart ? <Loading /> : null                    
+                }
             </div>
         );
     }
@@ -69,7 +79,9 @@ const mapStateToProps = state => {
         addedCartItems: state.dom.cartItems,
         subTotalPrice: state.dom.subTotalPrice,
         token: state.auth.token,
-        itemsToPurchase: state.dom.cartItems
+        itemsToPurchase: state.dom.cartItems,
+        purchaseStart: state.dom.purchaseStart,
+        errorOnPurchase: state.dom.errorOnPurchase
     }
 }
 

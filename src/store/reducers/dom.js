@@ -5,7 +5,9 @@ const initialState = {
     cartItems: [],
     showCart: false,
     subTotalPrice: 0,
-    onOrderNotLoggedin: false
+    onOrderNotLoggedin: false,
+    purchaseStart: false,
+    errorOnPurchase: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -82,8 +84,7 @@ const reducer = (state = initialState, action) => {
                 }
             }
         
-        case actionTypes.TOGGLE_ON_ORDER_NOT_LOGGEDIN:
-            console.log('dom reducer checking onOrderNotLoggedin action.toggle value -->  ', action.toggle)
+        case actionTypes.TOGGLE_ON_ORDER_NOT_LOGGEDIN:            
             return {
                 ...state,
                 onOrderNotLoggedin: action.toggle
@@ -94,7 +95,26 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 cartNum: 0,
                 cartItems: [],
-                subTotalPrice: 0            
+                subTotalPrice: 0,                     
+            }
+
+        case actionTypes.PURCHASE_START: 
+            return {
+                ...state,
+                purchaseStart: true
+            }
+
+        case actionTypes.PURCHASE_SUCCESS:
+            return {
+                ...state,
+                purchaseStart: false
+            }
+
+        case actionTypes.PURCHASE_FAILED:
+            return {
+                ...state,
+                purchaseStart: false,
+                errorOnPurchase: action.error
             }
     
         default:

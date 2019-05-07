@@ -55,21 +55,47 @@ export const toggleOrderButNotLoggedIn = (val) => {
     }
 }
 
+export const purchaseStart = () => {
+    return {
+        type: actionTypes.PURCHASE_START
+    }
+}
+
+export const purchaseSuccess = () => {
+    return {
+        type: actionTypes.PURCHASE_SUCCESS
+    }
+}
+
+export const purchaseFailed = (err) => {
+    return {
+        type: actionTypes.PURCHASE_FAILED,
+        error: err
+    }
+}
+
 // this is the action we dispatch from the container once we clicked that order button
 export const confirmOrderConfirmation = (orderData, token, router) => {
     return dispatch => {      
+      dispatch(purchaseStart());
+          
       axios.post('/orders.json', orderData)
         .then(response => {
             console.log('inside dom actionCreator confirmOrderConfirmation then function and the response is -->  ',response);             
+            
             // clear the shopping cart
             dispatch(cancelOrderConfirmation());      
             
             // redirect to home page                        
-            router.push('/');            
+            router.push('/');                        
+        }).then(()=>{
+            console.log('inside another then!');
+            
+            dispatch(purchaseSuccess());
         })
-        .catch(error => {
-        //   dispatch(purchaseBurgerFail(error));
-            console.log('inside dom.js actionCreator confirmOrderConfirmation CATCH method ERROR --> ', error)
+        .catch(error => {        
+            dispatch(purchaseFailed(error.message));
+            // console.log('and this is the error.message --> ',error.message);            
         });
     }
   }
