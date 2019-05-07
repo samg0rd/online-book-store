@@ -29,5 +29,6 @@ export {
     addItemNumber,
     subItemNumber,
     cancelOrderConfirmation,
-    confirmOrderConfirmation
+    confirmOrderConfirmation,
+    toggleOrderButNotLoggedIn
 } from './dom';

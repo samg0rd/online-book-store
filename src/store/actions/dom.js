@@ -48,6 +48,13 @@ export const cancelOrderConfirmation = () => {
     }
 }
 
+export const toggleOrderButNotLoggedIn = (val) => {
+    return {
+        type: actionTypes.TOGGLE_ON_ORDER_NOT_LOGGEDIN,
+        toggle: val
+    }
+}
+
 // this is the action we dispatch from the container once we clicked that order button
 export const confirmOrderConfirmation = (orderData, token, router) => {
     return dispatch => {      

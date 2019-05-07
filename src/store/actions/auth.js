@@ -46,7 +46,7 @@ export const checkAuthTimeout = (expirationTime) => {
     };
 };
 
-export const auth = (email, password, isSignup) => {
+export const auth = (email, password, isSignup, route) => {
     return dispatch => {
         dispatch(authStart());
         const authData = {
@@ -69,7 +69,11 @@ export const auth = (email, password, isSignup) => {
                 localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', response.data.localId);
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
-                dispatch(checkAuthTimeout(response.data.expiresIn));
+                dispatch(checkAuthTimeout(response.data.expiresIn)); 
+                // redirect to the home
+                if(route !== null){
+                    route.push('/');
+                }                                
             })
             .catch(err => {
                 dispatch(authFail(err.response.data.error));

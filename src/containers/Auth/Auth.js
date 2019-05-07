@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import classes from './Auth.module.scss';
@@ -93,8 +94,13 @@ class Auth extends Component {
     }
 
     submitHandler = ( event ) => {
-        event.preventDefault();
-        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup );
+        event.preventDefault();        
+        if(this.props.isLoggedInbeforePurchase === true){
+            this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup, null );
+            this.props.history.push('/Receipt');
+        }else{
+            this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup, this.props.history );
+        }
     }
 
     switchAuthModeHandler = () => {
@@ -152,6 +158,9 @@ class Auth extends Component {
                 {authRedirect}
                 {errorMessage}     
                 <form className={classes.Auth__form} onSubmit={this.submitHandler}>
+                    {
+                     this.props.isLoggedInbeforePurchase ? <h3>لطفا پیش از خرید به حساب کاربری خود وارد شوید</h3> : null
+                    }                    
                     <h2>                    
                         {this.state.isSignup ? 'SIGNUP' : 'SIGNIN'}
                     </h2>
@@ -178,15 +187,16 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,
-        authRedirectPath: state.auth.authRedirectPath
+        authRedirectPath: state.auth.authRedirectPath,
+        isLoggedInbeforePurchase: state.dom.onOrderNotLoggedin
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: ( email, password, isSignup ) => dispatch( actions.auth( email, password, isSignup ) ),
-        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
+        onAuth: ( email, password, isSignup, route ) => dispatch( actions.auth( email, password, isSignup, route ) ),
+        // onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
     };
 };
 
-export default connect( mapStateToProps, mapDispatchToProps )( Auth )
+export default withRouter(connect( mapStateToProps, mapDispatchToProps )( Auth ));

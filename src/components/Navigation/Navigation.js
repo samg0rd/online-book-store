@@ -41,6 +41,7 @@ class Navigation extends Component {
     if (!this.props.isAuthenticated) {     
       // check if the user is logged in, if not redirect it to the login page
       this.props.hideShoppingCart();
+      this.props.toggleOrderNotLoggedin(true);
       this.props.history.push('/login');
     }else{
       // if the user is logged in then send the http request with the data added to the shopping cart
@@ -147,9 +148,9 @@ const mapDispatchToProps = dispatch => {
     hideShoppingCart: () => dispatch(actionCreators.hideCart()),
     removeItemFromCart: (i) => dispatch(actionCreators.removeFromCart(i)),
     addQuantity: (i) => dispatch(actionCreators.addItemNumber(i)),
-    subQuantity: (i) => dispatch(actionCreators.subItemNumber(i)),
-    // checkIfLoggedIn: () => dispatch(actionCreators.authCheckState()),
-    onSetAuthRedirectPath: (path) => dispatch(actionCreators.setAuthRedirectPath(path))
+    subQuantity: (i) => dispatch(actionCreators.subItemNumber(i)),    
+    // onSetAuthRedirectPath: (path) => dispatch(actionCreators.setAuthRedirectPath(path)),
+    toggleOrderNotLoggedin: (val) => dispatch(actionCreators.toggleOrderButNotLoggedIn(val))
   }
 }
 

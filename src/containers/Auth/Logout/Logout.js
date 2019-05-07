@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 
 class Logout extends Component {
-    componentDidMount () {    
+    componentDidMount () {
         this.props.onLogout();
+        this.props.toggleOrderNotLoggedin(false);
     }
 
     render () {
@@ -16,7 +17,8 @@ class Logout extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogout: () => dispatch(actions.logout())
+        onLogout: () => dispatch(actions.logout()),
+        toggleOrderNotLoggedin: (val) => dispatch(actions.toggleOrderButNotLoggedIn(val))
     };
 };
 

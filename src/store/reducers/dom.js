@@ -4,7 +4,8 @@ const initialState = {
     cartNum: 0,
     cartItems: [],
     showCart: false,
-    subTotalPrice: 0
+    subTotalPrice: 0,
+    onOrderNotLoggedin: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -79,6 +80,13 @@ const reducer = (state = initialState, action) => {
                 return {
                     ...state                
                 }
+            }
+        
+        case actionTypes.TOGGLE_ON_ORDER_NOT_LOGGEDIN:
+            console.log('dom reducer checking onOrderNotLoggedin action.toggle value -->  ', action.toggle)
+            return {
+                ...state,
+                onOrderNotLoggedin: action.toggle
             }
             
         case actionTypes.CANCEL_ORDER_CONFIRMATION:
