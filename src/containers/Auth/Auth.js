@@ -37,7 +37,35 @@ class Auth extends Component {
                 },
                 valid: false,
                 touched: false
-            }
+            },
+            firstname: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'firstname'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 2
+                },
+                valid: false,
+                touched: false
+            },
+            lastname: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'lastname'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 2
+                },
+                valid: false,
+                touched: false
+            },
         },
         isSignup: false,
         showFakeInfo: false
@@ -109,8 +137,7 @@ class Auth extends Component {
         });
     }
 
-    toggleFakeInfoHandler = () => {
-        console.log('toggle fake info');
+    toggleFakeInfoHandler = () => {        
         this.setState((prevState)=>{
             return {
                 ...prevState,
@@ -120,6 +147,7 @@ class Auth extends Component {
     }
 
     render () {
+
         const formElementsArray = [];
         for ( let key in this.state.controls ) {
             formElementsArray.push( {
@@ -127,18 +155,48 @@ class Auth extends Component {
                 config: this.state.controls[key]
             } );
         }
+        
+        let signInFormArray = [];
+        let signUpFormArray = [];
+        let form = null;
 
-        let form = formElementsArray.map( formElement => (
-            <Input
-                key={formElement.id}
-                elementType={formElement.config.elementType}
-                elementConfig={formElement.config.elementConfig}
-                value={formElement.config.value}
-                invalid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
-        ) );        
+        formElementsArray.map(formElement => {
+            signUpFormArray.push(formElement);
+            if(formElement.id === "email" || formElement.id === "password"){
+                signInFormArray.push(formElement)
+            }
+        });
+
+        if(this.state.isSignup){
+            form = signUpFormArray.map(formElement => {
+                return (
+                    <Input
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    invalid={!formElement.config.valid}
+                    shouldValidate={formElement.config.validation}
+                    touched={formElement.config.touched}
+                    changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
+                )
+            }) 
+        }else{
+            form = signInFormArray.map(formElement => {
+                return (
+                    <Input
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    invalid={!formElement.config.valid}
+                    shouldValidate={formElement.config.validation}
+                    touched={formElement.config.touched}
+                    changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
+                )
+            }) 
+        }        
+                        
 
         let errorMessage = null;
 
@@ -162,7 +220,7 @@ class Auth extends Component {
                      this.props.isLoggedInbeforePurchase ? <h3>لطفا پیش از خرید به حساب کاربری خود وارد شوید</h3> : null
                     }                    
                     <h2>                    
-                        {this.state.isSignup ? 'SIGNUP' : 'SIGNIN'}
+                        {this.state.isSignup ? 'ثبت نام' : 'ورود'}
                     </h2>
                     <div className={classes.Auth__showFakeInfo} onClick={this.toggleFakeInfoHandler}>
                         show fake signin email and password                   
@@ -176,7 +234,7 @@ class Auth extends Component {
                 </form>
                 <Button 
                     clicked={this.switchAuthModeHandler}
-                    btnType="Button--Danger">SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}</Button>
+                    btnType="Button--Danger">برو به {this.state.isSignup ? 'ورود' : 'ثبت نام'}</Button>
             </div>
         );
     }

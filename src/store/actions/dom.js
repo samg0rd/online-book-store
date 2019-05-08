@@ -81,7 +81,7 @@ export const confirmOrderConfirmation = (orderData, token, router) => {
           
       axios.post('/orders.json', orderData)
         .then(response => {
-            console.log('inside dom actionCreator confirmOrderConfirmation then function and the response is -->  ',response);             
+            console.log('inside dom actionCreator confirmOrderConfirmation then function and the response is -->  ',response);       
             
             // clear the shopping cart
             dispatch(cancelOrderConfirmation());      
