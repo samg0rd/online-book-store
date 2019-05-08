@@ -10,19 +10,40 @@ const initialState = {
     errorOnPurchase: ''
 }
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {    
     
-    switch (action.type) {
+    switch (action.type) {        
+
         case actionTypes.ADD_TO_CART:
+
+            let itemToAdd = {
+                name: action.selectedItem.title,
+                author: action.selectedItem.author,
+                price: action.selectedItem.price,
+                quantity: action.quantity
+            }
+
+            let cartItemsCopy = [...state.cartItems];
+            let itemNames = [];
+            let cartNumCopy = state.cartNum;
+
+            state.cartItems.map(el=>itemNames.push(el.name));
+
+            if(itemNames.find(el=> el === itemToAdd.name)){
+                state.cartItems.forEach(el => {
+                    if(el.name === itemToAdd.name){
+                        el.quantity+=itemToAdd.quantity;
+                    }
+                });
+            }else{
+                cartItemsCopy = cartItemsCopy.concat(itemToAdd); 
+                cartNumCopy = cartNumCopy+=1;
+            }
+
             return {
-                ...state,
-                cartNum: state.cartNum+=1,
-                cartItems: state.cartItems.concat({
-                    name: action.selectedItem.title,
-                    author: action.selectedItem.author,
-                    price: action.selectedItem.price,
-                    quantity: action.quantity
-                }),
+                ...state,                
+                cartNum: cartNumCopy,                
+                cartItems: cartItemsCopy,
                 subTotalPrice: state.subTotalPrice += (action.selectedItem.price * action.quantity)
             }
         
