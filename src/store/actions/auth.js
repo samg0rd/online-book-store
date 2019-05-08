@@ -109,7 +109,8 @@ export const auth = (email, password, firstname, lastname, isSignup, route) => {
                 }
             })       
             .catch(err => {
-                dispatch(authFail(err.response.data.error));
+              console.log('inside catch function of auth action and the ERROR IS --> ',err);
+                // dispatch(authFail(err.response.data.error));
             });
     };
 };
