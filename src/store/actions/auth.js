@@ -1,4 +1,5 @@
 import axios from 'axios';
+import localAxios from '../../axios';
 
 import * as actionTypes from './actionTypes';
 
@@ -46,21 +47,36 @@ export const checkAuthTimeout = (expirationTime) => {
     };
 };
 
-export const auth = (email, password, isSignup, route) => {
+export const auth = (email, password, firstname, lastname, isSignup, route) => {
     return dispatch => {
         dispatch(authStart());
-        const authData = {
-            email: email,
-            password: password,
-            returnSecureToken: true
-        };
+
+        let authData = null;
+        // if its a signIn request the auth data will be
+        if(!isSignup){
+            authData = {
+                email: email,
+                password: password,
+                returnSecureToken: true
+            };
+        }else{
+            // if its a signUp request the auth data will be
+            authData = {
+                firstname: firstname,
+                lastname: lastname, 
+                email: email,
+                password: password,
+                returnSecureToken: true
+            };
+        }
         // if its a signup request replace the url below  with the desired endpoint url  
-        let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyC6q2FSvC8DOkaqXWqd4E8lYHH2oUO7BWQ';
+        let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyACtYjKvBHtbbAl3rA-Ro7ahVYT5KrxlH0';
                 
         // if its a signin request replace the url below  with the desired endpoint url
         if (!isSignup) {
-            url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyC6q2FSvC8DOkaqXWqd4E8lYHH2oUO7BWQ';            
-        }
+            url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyACtYjKvBHtbbAl3rA-Ro7ahVYT5KrxlH0';            
+        } 
+
         axios.post(url, authData, {headers: header})
             .then(response => {
                 console.log(response);
@@ -69,12 +85,29 @@ export const auth = (email, password, isSignup, route) => {
                 localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', response.data.localId);
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
-                dispatch(checkAuthTimeout(response.data.expiresIn)); 
-                // redirect to the home
-                if(route !== null){
-                    route.push('/');
-                }                                
+                dispatch(checkAuthTimeout(response.data.expiresIn));                
+
+                if(!isSignup){
+                    // redirect to the home
+                    if(route !== null){
+                        route.push('/');
+                    }
+                }                
             })
+            .then(response=>{                
+                // add a post request here to save some user data (first name and last name and authId ) as an object in the dataBase
+                if (isSignup){                    
+                    localAxios.post('/users.json', authData)
+                    .then(response => {                        
+                        if(route !== null){
+                            route.push('/');
+                        }
+                    })
+                    .catch(error => {
+                        console.log('inside auth actionCreator auth catch function (which is going to upload signedU user info in the database) and the error is --> ', error.message)
+                    });
+                }
+            })       
             .catch(err => {
                 dispatch(authFail(err.response.data.error));
             });
