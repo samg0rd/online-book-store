@@ -122,15 +122,11 @@ class Auth extends Component {
     }
 
     submitHandler = ( event ) => {
-      event.preventDefault();      
-      if(this.props.isLoggedInbeforePurchase === true && this.state.isSignup === false){
-        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, null, null, this.state.isSignup, this.props.history, this.props.isLoggedInbeforePurchase);                
-      }else if(this.props.isLoggedInbeforePurchase === true && this.state.isSignup === true){
-        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.firstname.value, this.state.controls.lastname.value, this.state.isSignup, this.props.history , this.props.isLoggedInbeforePurchase);        
-      }else if(this.props.isLoggedInbeforePurchase !== true && this.state.isSignup === false){        
-        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, null, null, this.state.isSignup, this.props.history , this.props.isLoggedInbeforePurchase);        
-      }else if(this.props.isLoggedInbeforePurchase !== true && this.state.isSignup === true){        
+      event.preventDefault();
+      if(this.isSignup){
         this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.firstname.value, this.state.controls.lastname.value, this.state.isSignup, this.props.history , this.props.isLoggedInbeforePurchase);
+      }else{
+        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, null, null, this.state.isSignup, this.props.history, this.props.isLoggedInbeforePurchase);
       }
     }
 
