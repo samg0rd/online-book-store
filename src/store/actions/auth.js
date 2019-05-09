@@ -47,7 +47,7 @@ export const checkAuthTimeout = (expirationTime) => {
     };
 };
 
-export const auth = (email, password, firstname, lastname, isSignup, route) => {
+export const auth = (email, password, firstname, lastname, isSignup, route, isLoggedInbeforePurchase) => {
     return dispatch => {
         dispatch(authStart());
 
@@ -87,20 +87,25 @@ export const auth = (email, password, firstname, lastname, isSignup, route) => {
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 dispatch(checkAuthTimeout(response.data.expiresIn));                
 
-                if(!isSignup){
-                    // redirect to the home
-                    if(route !== null){
-                        route.push('/');
-                    }
-                }                
+                if(!isSignup && isLoggedInbeforePurchase !== true){
+                  // redirect to the home       
+                  route.push('/');
+                }
+                if (!isSignup && isLoggedInbeforePurchase === true){
+                  route.push('/Receipt');                  
+                }
             })
             .then(response=>{                
                 // add a post request here to save some user data (first name and last name and authId ) as an object in the dataBase
                 if (isSignup){                    
                     localAxios.post('/users.json', authData)
-                    .then(response => {                        
-                        if(route !== null){
-                            route.push('/');
+                    .then(response => {
+                      console.log('USER INFO STORING IN DATA BASE THEN FUNC AND RESPONSE IS --> ', response);   
+                        if(isLoggedInbeforePurchase === true){
+                          route.push('/Receipt');      
+                        }
+                        if(isLoggedInbeforePurchase !== true){
+                          route.push('/');
                         }
                     })
                     .catch(error => {

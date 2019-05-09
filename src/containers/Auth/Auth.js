@@ -122,13 +122,16 @@ class Auth extends Component {
     }
 
     submitHandler = ( event ) => {
-        event.preventDefault();        
-        if(this.props.isLoggedInbeforePurchase === true){
-            this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup, null );
-            this.props.history.push('/Receipt');
-        }else{
-            this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.firstname.value, this.state.controls.lastname.value, this.state.isSignup, this.props.history );
-        }
+      event.preventDefault();      
+      if(this.props.isLoggedInbeforePurchase === true && this.state.isSignup === false){
+        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, null, null, this.state.isSignup, this.props.history, this.props.isLoggedInbeforePurchase);                
+      }else if(this.props.isLoggedInbeforePurchase === true && this.state.isSignup === true){
+        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.firstname.value, this.state.controls.lastname.value, this.state.isSignup, this.props.history , this.props.isLoggedInbeforePurchase);        
+      }else if(this.props.isLoggedInbeforePurchase !== true && this.state.isSignup === false){        
+        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, null, null, this.state.isSignup, this.props.history , this.props.isLoggedInbeforePurchase);        
+      }else if(this.props.isLoggedInbeforePurchase !== true && this.state.isSignup === true){        
+        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.firstname.value, this.state.controls.lastname.value, this.state.isSignup, this.props.history , this.props.isLoggedInbeforePurchase);
+      }
     }
 
     switchAuthModeHandler = () => {
@@ -252,7 +255,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: ( email, password, firstname, lastname, isSignup, route ) => dispatch( actions.auth( email, password, firstname, lastname, isSignup, route ) ),
+        onAuth: ( email, password, firstname, lastname, isSignup, route, isLoggedInbeforePurchase ) => dispatch( actions.auth( email, password, firstname, lastname, isSignup, route, isLoggedInbeforePurchase ) ),
         // onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
     };
 };
