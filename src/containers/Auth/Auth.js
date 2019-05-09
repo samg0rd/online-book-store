@@ -121,12 +121,30 @@ class Auth extends Component {
         this.setState( { controls: updatedControls } );
     }
 
-    submitHandler = ( event ) => {
+    submitHandler = ( event ) => {      
       event.preventDefault();
-      if(this.isSignup){
-        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.firstname.value, this.state.controls.lastname.value, this.state.isSignup, this.props.history , this.props.isLoggedInbeforePurchase);
-      }else{
-        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, null, null, this.state.isSignup, this.props.history, this.props.isLoggedInbeforePurchase);
+      if(this.state.isSignup === true){        
+        
+        this.props.onAuth( 
+          this.state.controls.email.value, 
+          this.state.controls.password.value, 
+          this.state.controls.firstname.value, 
+          this.state.controls.lastname.value, 
+          this.state.isSignup, 
+          this.props.history, 
+          this.props.isLoggedInbeforePurchase
+        );
+      }else if(this.state.isSignup === false){        
+
+        this.props.onAuth( 
+          this.state.controls.email.value, 
+          this.state.controls.password.value, 
+          null, 
+          null, 
+          this.state.isSignup, 
+          this.props.history, 
+          this.props.isLoggedInbeforePurchase
+        );
       }
     }
 
@@ -251,8 +269,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: ( email, password, firstname, lastname, isSignup, route, isLoggedInbeforePurchase ) => dispatch( actions.auth( email, password, firstname, lastname, isSignup, route, isLoggedInbeforePurchase ) ),
-        // onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
+      onAuth: ( email, password, firstname, lastname, isSignup, route, isLoggedInbeforePurchase ) => dispatch( actions.auth( email, password, firstname, lastname, isSignup, route, isLoggedInbeforePurchase ) ),        
     };
 };
 

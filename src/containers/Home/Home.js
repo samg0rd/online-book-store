@@ -97,9 +97,9 @@ class Home extends Component {
     }
     return (
         <div className={classes.Home}>   
-            {modal}
-            <h1>Welcome to online book store</h1>
-            <h2>newest titles</h2>            
+            {modal}            
+            <h1>کتاب آنلاین</h1>
+            <h2>عنوان مورد نظرت رو انتخاب کن</h2>            
             <div className={classes.Home__something}>
                 {
                   this.props.books ? this.props.books.map((el, i) => <BookCard 

@@ -34,9 +34,9 @@ class App extends Component {
     if ( this.props.isAuthenticated ) {
 
       LINKS = [
-        { label: 'Home', to: '/' , exact: true},
-        { label: 'about', to: '/about' },
-        { label: 'logout', to: '/logout' },
+        { label: 'خانه', to: '/' , exact: true},
+        { label: 'درباره ما', to: '/about' },
+        { label: 'خروج', to: '/logout' },
       ]
 
       routes = (
@@ -51,9 +51,9 @@ class App extends Component {
     }else{
       // USER IS NOT AUTHENTICATED
       LINKS = [        
-        { label: 'Home', to: '/' , exact: true},
-        { label: 'about', to: '/about'},
-        { label: 'login', to: "/login"}
+        { label: 'خانه', to: '/' , exact: true},
+        { label: 'درباره ما', to: '/about'},
+        { label: 'ورود', to: "/login"}
       ]
 
       routes = (

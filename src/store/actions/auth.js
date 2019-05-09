@@ -1,5 +1,6 @@
 import axios from 'axios';
 import localAxios from '../../axios';
+import store from '../index';
 
 import * as actionTypes from './actionTypes';
 
@@ -48,76 +49,81 @@ export const checkAuthTimeout = (expirationTime) => {
 };
 
 export const auth = (email, password, firstname, lastname, isSignup, route, isLoggedInbeforePurchase) => {
-    return dispatch => {
-        dispatch(authStart());
 
-        let authData = null;
-        // if its a signIn request the auth data will be
-        if(!isSignup){
-            authData = {
-                email: email,
-                password: password,
-                returnSecureToken: true
-            };
-        }else{
-            // if its a signUp request the auth data will be
-            authData = {
-                firstname: firstname,
-                lastname: lastname, 
-                email: email,
-                password: password,
-                returnSecureToken: true
-            };
-        }
-        // if its a signup request replace the url below  with the desired endpoint url  
-        let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyACtYjKvBHtbbAl3rA-Ro7ahVYT5KrxlH0';
-                
-        // if its a signin request replace the url below  with the desired endpoint url
-        if (!isSignup) {
-            url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyACtYjKvBHtbbAl3rA-Ro7ahVYT5KrxlH0';            
-        } 
-
-        axios.post(url, authData, {headers: header})
-            .then(response => {
-                console.log(response);
-                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-                localStorage.setItem('token', response.data.idToken);
-                localStorage.setItem('expirationDate', expirationDate);
-                localStorage.setItem('userId', response.data.localId);
-                dispatch(authSuccess(response.data.idToken, response.data.localId));
-                dispatch(checkAuthTimeout(response.data.expiresIn));                
-
-                if(!isSignup && isLoggedInbeforePurchase !== true){
-                  // redirect to the home       
-                  route.push('/');
-                }
-                if (!isSignup && isLoggedInbeforePurchase === true){
-                  route.push('/Receipt');                  
-                }
-            })
-            .then(response=>{                
-                // add a post request here to save some user data (first name and last name and authId ) as an object in the dataBase
-                if (isSignup){                    
-                    localAxios.post('/users.json', authData)
-                    .then(response => {
-                      console.log('USER INFO STORING IN DATA BASE THEN FUNC AND RESPONSE IS --> ', response);   
-                        if(isLoggedInbeforePurchase === true){
-                          route.push('/Receipt');      
-                        }
-                        if(isLoggedInbeforePurchase !== true){
-                          route.push('/');
-                        }
-                    })
-                    .catch(error => {
-                        console.log('inside auth actionCreator auth catch function (which is going to upload signedU user info in the database) and the error is --> ', error.message)
-                    });
-                }
-            })       
-            .catch(err => {
-              console.log('inside catch function of auth action and the ERROR IS --> ',err);
-                // dispatch(authFail(err.response.data.error));
-            });
+  let authData = null;
+  let url = null;
+  // if its a signIn request the auth data will be
+  if(isSignup === false){
+    // if its a signin request replace the url below  with the desired endpoint url
+    url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyACtYjKvBHtbbAl3rA-Ro7ahVYT5KrxlH0';            
+    authData = {
+      email: email,
+      password: password,
+      returnSecureToken: true
     };
+  }else if(isSignup === true){
+    // if its a signup request replace the url below  with the desired endpoint url  
+    url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyACtYjKvBHtbbAl3rA-Ro7ahVYT5KrxlH0';
+    // if its a signUp request the auth data will be
+    authData = {
+      email: email,
+      password: password,
+      firstname: firstname,
+      lastname: lastname,               
+      returnSecureToken: true
+    };
+  }
+
+  return dispatch => {
+
+    dispatch(authStart());                    
+
+    axios.post(url, authData, {headers: header})
+      .then(response => {
+        console.log(response);
+        const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+        localStorage.setItem('token', response.data.idToken);
+        localStorage.setItem('expirationDate', expirationDate);
+        localStorage.setItem('userId', response.data.localId);
+        dispatch(authSuccess(response.data.idToken, response.data.localId));
+        dispatch(checkAuthTimeout(response.data.expiresIn));                
+
+        if(!isSignup && isLoggedInbeforePurchase !== true){
+          // redirect to the home       
+          route.push('/');
+        }
+        if (!isSignup && isLoggedInbeforePurchase === true){
+          route.push('/Receipt');                  
+        }
+      })
+      .then(response=>{
+          let authDataModified = {
+            ...authData,
+            userId: store.getState().auth.userId
+          }        
+          console.log('this is the auth data sending to the users json --> ', authDataModified)        
+          // add a post request here to save some user data (first name and last name and authId ) as an object in the dataBase
+          if (isSignup){                    
+              localAxios.post('/users.json', authDataModified)
+              .then(response => {
+                console.log('USER INFO STORING IN DATA BASE THEN FUNC AND RESPONSE IS --> ', response);   
+                  if(isLoggedInbeforePurchase === true){
+                    route.push('/Receipt');      
+                  }
+                  if(isLoggedInbeforePurchase !== true){
+                    route.push('/');
+                  }
+              })
+              .catch(error => {
+                  console.log('inside auth actionCreator auth catch function (which is going to upload signedU user info in the database) and the error is --> ', error.message)
+              });
+          }
+      })       
+      .catch(err => {
+        console.log('inside catch function of auth action and the ERROR IS --> ',err);
+          // dispatch(authFail(err.response.data.error));
+      });
+  };
 };
 
 export const setAuthRedirectPath = (path) => {
