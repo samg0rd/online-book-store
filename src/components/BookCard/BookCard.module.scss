@@ -1,10 +1,29 @@
 .BookCard{
-    border: 1px solid tomato;
-    background: silver;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border: 1px solid #dedede;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);    
     margin: 10px;
     width: 300px;
-    padding: 5px;
+    height: auto;    
+    display: flex;
+    flex-direction: column;    
     cursor: pointer;
+    &__imgPlaceHolder{
+        flex: 1;
+        width: 100%;
+        height: 50%;
+        max-height: 100px;
+        background: lightblue;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+    &__content{
+        flex: 1;        
+        width: 100%;
+    }
 }
