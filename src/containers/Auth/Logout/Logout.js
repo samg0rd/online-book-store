@@ -8,6 +8,7 @@ class Logout extends Component {
     componentDidMount () {
         this.props.onLogout();
         this.props.toggleOrderNotLoggedin(false);
+        this.props.clearuserInfo();
     }
 
     render () {
@@ -18,7 +19,8 @@ class Logout extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         onLogout: () => dispatch(actions.logout()),
-        toggleOrderNotLoggedin: (val) => dispatch(actions.toggleOrderButNotLoggedIn(val))
+        toggleOrderNotLoggedin: (val) => dispatch(actions.toggleOrderButNotLoggedIn(val)),
+        clearuserInfo: () => dispatch(actions.clearUserInfo())
     };
 };
 

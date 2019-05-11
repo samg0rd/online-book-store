@@ -122,9 +122,12 @@ class Navigation extends Component {
             <li key={i}>
               <NavLink to={link.to} exact={link.exact}  activeStyle={{color: "yellow"}}>
                 {link.label}
-              </NavLink>
+              </NavLink>              
             </li>
           ))}
+          {
+            this.props.userFirstName ? <li style={{color: "white"}}> {this.props.userFirstName} سلام</li> : null
+          }          
           <ShoppingCartIcon clicked={this.shoppingCartClickedHandler}/>
         </ul>
       </div>
@@ -138,7 +141,9 @@ const mapStateToProps = state => {
     addedCartItems: state.dom.cartItems,
     subTotalPrice: state.dom.subTotalPrice,
     isAuthenticated: state.auth.token !== null,
-    authRedirectPath: state.auth.authRedirectPath
+    authRedirectPath: state.auth.authRedirectPath,
+    userFirstName: state.user.firstName,
+    userLastName: state.user.lastName
   }
 }
 

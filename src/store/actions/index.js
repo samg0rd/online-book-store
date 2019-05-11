@@ -32,3 +32,7 @@ export {
     confirmOrderConfirmation,
     toggleOrderButNotLoggedIn
 } from './dom';
+
+export {
+    clearUserInfo
+} from './user'
