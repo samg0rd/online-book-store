@@ -26,47 +26,14 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
+// defining database
 const db = firebase.database();
-const ref = db.ref('books');
-// ref.on('value', getData, errData);
+// booksRef
+const booksRef = db.ref('books');
 
-let userRef = ref.child("users");
-// console.log('userRef --> ',userRef.child("author"));
-// Find the two shortest dinosaurs.
-ref.orderByChild("price").limitToFirst(2).on("value", function(snapshot) {
-  console.log('snapshot.key -->',snapshot.key);
+booksRef.orderByChild('title').equalTo('جنگ و صلح').on("value", function(snapshot) {
+  console.log(' in booksRef order it by child with the key of title جنگ و صلح =-=-=-==->>>  ',snapshot.val());  
 });
-
-// ref.orderByKey().on("value", function(snapshot) {
-//   console.log(snapshot);
-// });
-ref.orderByChild('title').endAt('هملت').on("value", function(snapshot) {
-  console.log(snapshot.key);
-});
-
-// Find all dinosaurs whose height is exactly 25 meters.
-ref.orderByChild("title").equalTo('هملت').on("value", function(snapshot) {
-  console.log(snapshot.key);
-});
-
-// function getData(data) {  
-//   let books = data.val();
-//   let keys = Object.keys(books);
-//   console.log('books ==> ',keys);
-//   keys.forEach((element,i) => {
-//     console.log('element -> ', element)
-//     console.log('index is -->', i);    
-//     let bookTitle = books[i].title;
-//     console.log('initials -->', bookTitle);
-//     let author = books[i].author;
-//     console.log('author -->', author);
-//   });
-// }
-
-function errData(err){  
-  console.log('err ---> ',err);
-}
-
 
 // rendering the app
 ReactDOM.render(
