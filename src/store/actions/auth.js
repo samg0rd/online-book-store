@@ -4,6 +4,11 @@ import store from '../index';
 
 import * as actionTypes from './actionTypes';
 
+import {setUserInfo} from './user';
+
+// import * as firebase from 'firebase';
+import db from '../../configFirebase';
+
 // if any header is needed for our post request 
 const header = {
     'Content-Type': 'application/json',
@@ -78,7 +83,7 @@ export const auth = (email, password, firstname, lastname, isSignup, route, isLo
 
     dispatch(authStart());                    
 
-    axios.post(url, authData, {headers: header})
+    axios.post(url, authData, {headers: header})      
       .then(response => {
         console.log(response);
         const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
@@ -86,7 +91,11 @@ export const auth = (email, password, firstname, lastname, isSignup, route, isLo
         localStorage.setItem('expirationDate', expirationDate);
         localStorage.setItem('userId', response.data.localId);
         dispatch(authSuccess(response.data.idToken, response.data.localId));
-        dispatch(checkAuthTimeout(response.data.expiresIn));                
+        dispatch(checkAuthTimeout(response.data.expiresIn));  
+        
+        if(!isSignup){
+          setUserData(dispatch);
+        }        
 
         if(!isSignup && isLoggedInbeforePurchase !== true){
           // redirect to the home       
@@ -106,6 +115,9 @@ export const auth = (email, password, firstname, lastname, isSignup, route, isLo
           if (isSignup){                    
               localAxios.post('/users.json', authDataModified)
               .then(response => {
+                
+                setUserData(dispatch);
+
                 console.log('USER INFO STORING IN DATA BASE THEN FUNC AND RESPONSE IS --> ', response);   
                   if(isLoggedInbeforePurchase === true){
                     route.push('/Receipt');      
@@ -113,12 +125,12 @@ export const auth = (email, password, firstname, lastname, isSignup, route, isLo
                   if(isLoggedInbeforePurchase !== true){
                     route.push('/');
                   }
-              })
+              })              
               .catch(error => {
                   console.log('inside auth actionCreator auth catch function (which is going to upload signedU user info in the database) and the error is --> ', error.message)
               });
           }
-      })       
+      })   
       .catch(err => {
         console.log('inside catch function of auth action and the ERROR IS --> ',err);
           // dispatch(authFail(err.response.data.error));
@@ -151,3 +163,28 @@ export const authCheckState = () => {
         }
     };
 };
+
+
+
+function setUserData(dispatch){
+  // SET USER INFO START
+
+  console.log('here is the auth action creator and its the 3RD then where im going to update the user data SIGNIN');        
+
+  const usersRef = db.ref('users');
+
+  const currentUserId = store.getState().auth.userId;
+
+  usersRef.orderByChild('userId').equalTo(currentUserId).on("value", function(snapshot) {          
+    const relatedData = snapshot.val();
+    let userId = Object.keys(relatedData);          
+    let actualData = relatedData[userId[0]];                    
+    dispatch(setUserInfo(actualData));
+    console.log('relatedData --> ',relatedData);
+    console.log('userId --> ', userId);
+    console.log('actualData --> ', actualData);
+    
+  });
+
+  // SET USER INFO END
+}
