@@ -31,8 +31,8 @@ export const authSuccess = (token, userId) => {
 
 export const authFail = (error) => {
     return {
-        type: actionTypes.AUTH_FAIL,
-        error: error
+      type: actionTypes.AUTH_FAIL,
+      error: error
     };
 };
 
@@ -41,7 +41,7 @@ export const logout = () => {
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
     return {
-        type: actionTypes.AUTH_LOGOUT
+      type: actionTypes.AUTH_LOGOUT
     };
 };
 
@@ -156,9 +156,11 @@ export const authCheckState = () => {
             if (expirationDate <= new Date()) {
                 dispatch(logout());
             } else {
-                const userId = localStorage.getItem('userId');
-                dispatch(authSuccess(token, userId));
-                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
+              const userId = localStorage.getItem('userId');
+              dispatch(authSuccess(token, userId));
+              dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
+
+              setUserData(dispatch);
             }   
         }
     };
@@ -167,9 +169,7 @@ export const authCheckState = () => {
 
 
 function setUserData(dispatch){
-  // SET USER INFO START
-
-  console.log('here is the auth action creator and its the 3RD then where im going to update the user data SIGNIN');        
+  // SET USER INFO START  
 
   const usersRef = db.ref('users');
 
@@ -179,11 +179,7 @@ function setUserData(dispatch){
     const relatedData = snapshot.val();
     let userId = Object.keys(relatedData);          
     let actualData = relatedData[userId[0]];                    
-    dispatch(setUserInfo(actualData));
-    console.log('relatedData --> ',relatedData);
-    console.log('userId --> ', userId);
-    console.log('actualData --> ', actualData);
-    
+    dispatch(setUserInfo(actualData));    
   });
 
   // SET USER INFO END

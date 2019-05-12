@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import * as actionCreators from '../../store/actions/index';
 
 import classes from './Dashboard.module.scss';
 
 class Dashboard extends Component {
+
+    componentDidMount() {
+        if(this.props.userId){
+            this.props.onTryAutoSignup();
+        }
+    }
+    
+
     render() {
         return (
             <div className={classes.dashboard}>
@@ -29,13 +38,14 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
     return {
         userFirstName: state.user.firstName,
-        userLastName: state.user.lastName
+        userLastName: state.user.lastName,
+        userId: state.auth.userId
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        onTryAutoSignup: () => dispatch( actionCreators.authCheckState() )
     }
 }
 
