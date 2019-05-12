@@ -4,9 +4,6 @@ import * as actionCreators from '../../store/actions/index';
 
 import classes from './Dashboard.module.scss';
 
-// import * as firebase from 'firebase';
-import db from '../../configFirebase';
-
 // import components
 import Orders from './Orders/Orders';
 
