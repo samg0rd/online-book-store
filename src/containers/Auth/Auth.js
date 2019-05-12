@@ -7,6 +7,8 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import * as actions from '../../store/actions/index';
 
+import Loading from '../../components/UI/Loading/Loading';
+
 class Auth extends Component {
     state = {
         controls: {
@@ -247,11 +249,15 @@ class Auth extends Component {
                         <p><span>password : </span> 123456789</p>
                     </div>
                     {form}
-                    <Button btnType="Button--Success">SUBMIT</Button>
+                    <Button btnType="Button--Success" disabled={this.props.loading}>SUBMIT</Button>
                 </form>
                 <Button 
                     clicked={this.switchAuthModeHandler}
-                    btnType="Button--Danger">برو به {this.state.isSignup ? 'ورود' : 'ثبت نام'}</Button>
+                    btnType="Button--Danger">برو به {this.state.isSignup ? 'ورود' : 'ثبت نام'}
+                </Button>
+
+                {this.props.loading ? <Loading /> : null}
+
             </div>
         );
     }

@@ -133,7 +133,7 @@ export const auth = (email, password, firstname, lastname, isSignup, route, isLo
       })   
       .catch(err => {
         console.log('inside catch function of auth action and the ERROR IS --> ',err);
-          // dispatch(authFail(err.response.data.error));
+          dispatch(authFail(err.response.data.error));
       });
   };
 };
