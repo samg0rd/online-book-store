@@ -13,7 +13,11 @@ class Receipt extends Component {
         // put the token as the second argument        
         const order = {
             items: this.props.itemsToPurchase,
-            totalPrice: this.props.subTotalPrice
+            totalPrice: this.props.subTotalPrice,
+            user: {
+                firstName: this.props.userFirstName,
+                lastName: this.props.userLastName
+            }
         }
         console.log('ORDER TO PURCHASE --> ', order);
         this.props.purchaseOrder(order,this.props.token, this.props.history);
@@ -81,7 +85,9 @@ const mapStateToProps = state => {
         token: state.auth.token,
         itemsToPurchase: state.dom.cartItems,
         purchaseStart: state.dom.purchaseStart,
-        errorOnPurchase: state.dom.errorOnPurchase
+        errorOnPurchase: state.dom.errorOnPurchase,
+        userFirstName: state.user.firstName,
+        userLastName: state.user.lastName
     }
 }
 
