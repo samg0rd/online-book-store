@@ -15,6 +15,7 @@ class Receipt extends Component {
             items: this.props.itemsToPurchase,
             totalPrice: this.props.subTotalPrice,
             user: {
+                userId: this.props.userId,
                 firstName: this.props.userFirstName,
                 lastName: this.props.userLastName
             }
@@ -87,7 +88,8 @@ const mapStateToProps = state => {
         purchaseStart: state.dom.purchaseStart,
         errorOnPurchase: state.dom.errorOnPurchase,
         userFirstName: state.user.firstName,
-        userLastName: state.user.lastName
+        userLastName: state.user.lastName,
+        userId: state.auth.userId
     }
 }
 

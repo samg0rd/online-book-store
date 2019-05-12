@@ -1,0 +1,36 @@
+.dashboard{
+    border: 1px solid red;
+    height: 100%;
+    direction: rtl;
+    &__userInfoBar{
+        border: 1px solid orange;
+        display: flex;
+        justify-content: space-evenly;
+    }    
+    &__section{
+        border: 1px solid green;
+        display: flex;        
+    }
+    &__side{
+        border: 1px solid blue;
+        flex: 1;
+    }
+    &__main{
+        border: 1px solid purple;
+        flex: 3;
+    }
+    &__menu{
+        background: lightblue;
+        margin: 0;
+        padding: 10px 0;
+        li{
+            cursor: pointer;
+            list-style-type: none;
+            transition: all .2s;
+            padding-right: 10px;
+            &:hover{
+                background: gold;
+            }
+        }
+    }
+}

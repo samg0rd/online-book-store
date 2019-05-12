@@ -10,6 +10,7 @@ import About from './containers/About/About';
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 import Receipt from './containers/Receipt/Receipt';
+import Dashboard from './containers/Dashboard/Dashboard';
 
 // import required actions from the store 
 import * as actions from './store/actions/index';
@@ -36,6 +37,7 @@ class App extends Component {
       LINKS = [
         { label: 'خانه', to: '/' , exact: true},
         { label: 'درباره ما', to: '/about' },
+        { label: 'داشبورد', to: "/dashboard"},
         { label: 'خروج', to: '/logout' },
       ]
 
@@ -43,7 +45,8 @@ class App extends Component {
         <Switch>                    
           <Route path="/logout" component={Logout} />
           <Route path="/about" component={About} />
-          <Route path="/receipt" component={Receipt} />          
+          <Route path="/receipt" component={Receipt} />
+          <Route path="/dashboard" component={Dashboard} />       
           <Route path="/" exact component={Home} />          
         </Switch>
       );
