@@ -34,5 +34,6 @@ export {
 } from './dom';
 
 export {
-    clearUserInfo
+    clearUserInfo,
+    setUserOrders
 } from './user'

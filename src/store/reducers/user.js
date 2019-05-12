@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes.js';
 
 const initialState = {
     firstName: null,
-    lastName: null,  
+    lastName: null,
+    userOrders: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +20,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 firstName: null,
                 lastName: null,
+                userOrders: null
+            }
+
+        case actionTypes.SET_USER_ORDERS:                            
+
+            return {
+                ...state,
+                userOrders: action.userOrderInfo
             }
 
         default:

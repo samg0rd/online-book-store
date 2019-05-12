@@ -15,38 +15,8 @@ class Dashboard extends Component {
     componentDidMount() {
         if(this.props.userId){
             this.props.onTryAutoSignup();
+            this.props.setUserOrders();
         }
-        
-        // SET USER INFO START  
-        
-        const ordersRef = db.ref('orders');
-
-        const currentUserId = this.props.userId;
-
-        const anotherOrdersRef = ordersRef.child('user').equalTo(currentUserId);
-
-        ordersRef.on('value', function(snapshot){
-
-            const relatedData = snapshot.val();        
-            let keysArray = Object.keys(relatedData);            
-
-            let userPurchases = [];            
-
-            keysArray.forEach(orderId => {                                                
-                if(currentUserId === relatedData[orderId].user.userId){
-                    userPurchases.push(relatedData[orderId]);
-                }
-            });
-
-            console.log('userPurchases ------> ', userPurchases);
-            
-        })
-                
-
-        console.log('anotherOrdersRef ---> ',anotherOrdersRef);
-        
-        // SET USER INFO END
-
     }
     
     
@@ -85,7 +55,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onTryAutoSignup: () => dispatch( actionCreators.authCheckState() )
+        onTryAutoSignup: () => dispatch(actionCreators.authCheckState()),
+        setUserOrders: () => dispatch(actionCreators.setUserOrders())
     }
 }
 
