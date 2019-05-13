@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes.js';
 const initialState = {
     firstName: null,
     lastName: null,
-    userOrders: null
+    userOrders: null,
 }
 
 const reducer = (state = initialState, action) => {

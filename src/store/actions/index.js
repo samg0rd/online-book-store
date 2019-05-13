@@ -36,4 +36,10 @@ export {
 export {
     clearUserInfo,
     setUserOrders
-} from './user'
+} from './user';
+
+export {
+    showUserOrders,
+    showUserRentals,
+    showUserSettings
+} from './dashboard';
