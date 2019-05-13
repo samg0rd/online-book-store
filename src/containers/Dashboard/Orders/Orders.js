@@ -8,13 +8,13 @@ class Orders extends Component{
         return (
             <div>
                 {
-                    this.props.userOrders ? this.props.userOrders.map(el=>{
+                    this.props.userOrders ? this.props.userOrders.map((el,i)=>{
                         return (
-                            <div className={classes.userOrder}>
+                            <div key={i} className={classes.userOrder}>
                                 {
-                                    el.items.map(el=>{
+                                    el.items.map((el,index)=>{
                                         return (
-                                            <div>
+                                            <div key={index}>
                                                 <span>{el.name}</span> : <span>{el.author}</span> --- <span>{el.price} $</span> --- <span>تعداد :‌ {el.quantity}</span>
                                             </div>
                                         )
