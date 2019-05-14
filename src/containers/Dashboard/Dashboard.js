@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../store/actions/index';
 
+import {Suspense, lazy} from 'react';
+
 import classes from './Dashboard.module.scss';
 
-// import components
-import Orders from './Orders/Orders';
-import Rental from './Rental/Rental';
-import UserInfoSettings from './userInfoEdit/UserInfoEdit';
+import Loading from '../../components/UI/Loading/Loading';
+
+// lazy Import load the child components of this component
+const Orders = lazy(()=>import('./Orders/Orders'));
+const Rental = lazy(()=>import('./Rental/Rental'));
+const UserInfoSettings = lazy(()=>import('./userInfoEdit/UserInfoEdit'));
 
 class Dashboard extends Component {
 
@@ -59,7 +63,9 @@ class Dashboard extends Component {
                         </ul>
                     </div>
                     <div className={classes.dashboard__main}>
+                        <Suspense fallback={<Loading/>}>
                         { content }
+                        </Suspense>
                     </div>                    
                 </div>
             </div>
