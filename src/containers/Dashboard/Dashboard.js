@@ -50,7 +50,7 @@ class Dashboard extends Component {
 
         return (
             <div className={classes.dashboard}>
-                <div className={classes.dashboard__userInfoBar}>
+                <div className={classes.dashboard__userInfoBar}>                    
                     <p>userFirstName: {this.props.userFirstName}</p>
                     <p>userLastName: {this.props.userLastName}</p>
                 </div> 

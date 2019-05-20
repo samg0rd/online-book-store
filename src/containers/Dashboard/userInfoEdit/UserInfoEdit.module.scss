@@ -1,0 +1,29 @@
+.imagePreview{
+    border: 1px solid red;
+    padding: 10px;
+}
+.imageFileInput,
+.uploadImgBtn{
+    display: block;
+    margin: 5px auto;
+    padding: 10px;
+    border: 1px solid green;
+    width: 50%;
+    text-align: center;
+    box-shadow:  0 0 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.hiddenFileInpu{
+    display: none;
+}
+.previewImgWrap{
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
